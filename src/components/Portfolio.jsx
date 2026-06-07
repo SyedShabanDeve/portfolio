@@ -427,13 +427,9 @@ export default function Portfolio() {
         background: "rgba(9,9,11,0.85)", backdropFilter: "blur(20px)",
         borderBottom: "1px solid var(--c-line)",
       }}>
-        <div style={{
-          fontFamily: "'Playfair Display', serif",
-          fontSize: "1.1rem", fontWeight: 900, letterSpacing: "0.02em",
-          color: "var(--c-text)",
-        }}>
-          SA<span style={{ color: "var(--c-accent)" }}>.</span>
-        </div>
+        <a href="#about" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }} aria-label="Home">
+          <img src="/logo.svg" alt="SA" style={{ width: 36, height: 36, display: 'block' }} />
+        </a>
         <div style={{ display: "flex", gap: "4px" }}>
           {NAV.map(n => (
             <button
