@@ -1,7 +1,15 @@
 {
-  "name": "shaban-s-porfolio",
+  "name": "syed-shaban-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Personal portfolio of Syed Shaban Ahmad — Full Stack Developer (MERN & WordPress).",
+  "homepage": "https://syedshabandeve.github.io/portfolio/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SyedShabanDeve/portfolio.git"
+  },
+  "author": "Syed Shaban Ahmad <syedshaban785@gmail.com>",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

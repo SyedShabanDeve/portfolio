@@ -3,6 +3,11 @@ import { useState, useEffect, useRef } from "react";
 /* ─── DATA ─────────────────────────────────────────────────── */
 const NAV = ["About", "Skills", "Experience", "Projects", "Contact"];
 
+const EMAIL    = "syedshaban785@gmail.com";
+const PHONE    = "+92 307 941 5512";
+const GITHUB   = "https://github.com/SyedShabanDeve";
+const LINKEDIN = "https://www.linkedin.com/in/syedshaban785";
+
 const SKILLS = [
   { cat: "Frontend", items: [
     { name: "React.js",      pct: 90 },
@@ -69,6 +74,7 @@ const EXPERIENCE = [
   },
 ];
 
+/* Live client work — shipped and in production. Source is client-owned/private. */
 const PROJECTS = [
   {
     idx: "01",
@@ -105,6 +111,37 @@ const PROJECTS = [
     tags: ["WordPress", "HTML", "CSS", "JS"],
     url: "https://saniitconsultant.com",
     color: "#7b2d8b",
+  },
+];
+
+/* Open-source builds — full source on GitHub so the code can be read directly. */
+const OSS_PROJECTS = [
+  {
+    idx: "05",
+    name: "Catchy Storefront",
+    type: "React · E-Commerce",
+    desc: "Multi-page storefront with a persistent cart (variant-aware by size and colour), category routing, product detail pages, checkout flow, and a content admin panel — all on React 19 and Context state.",
+    tags: ["React 19", "React Router", "Context API", "Tailwind"],
+    repo: "https://github.com/SyedShabanDeve/catchy-storefront",
+    color: "#d4a853",
+  },
+  {
+    idx: "06",
+    name: "Sani Corporate Website",
+    type: "React · Corporate",
+    desc: "Seven-page corporate site with route-level code splitting via React.lazy and Suspense, scroll and hash restoration on navigation, and a Netlify SPA redirect config.",
+    tags: ["React 19", "React Router", "Code Splitting", "Netlify"],
+    repo: "https://github.com/SyedShabanDeve/sani-corporate-website",
+    color: "#457b9d",
+  },
+  {
+    idx: "07",
+    name: "Directory Landing Redesign",
+    type: "React · Landing Page",
+    desc: "Conversion-focused landing page redesign for a business directory product — animated hero, listings grid, and a how-it-works flow built with Framer Motion.",
+    tags: ["React", "Framer Motion", "Tailwind", "Vite"],
+    repo: "https://github.com/SyedShabanDeve/directory-landing-redesign",
+    color: "#2d6a4f",
   },
 ];
 
@@ -267,31 +304,219 @@ function ProjectCard({ p, idx }) {
               }}>{t}</span>
             ))}
           </div>
-          <a
-            href={p.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "6px",
-              fontSize: "0.75rem",
-              fontFamily: "'DM Mono', monospace",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: p.color,
-              textDecoration: "none",
-              fontWeight: 500,
-            }}
-          >
-            Visit Live Site
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M7 17L17 7M7 7h10v10" />
-            </svg>
-          </a>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "1.1rem", alignItems: "center" }}>
+            {p.url && (
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-link"
+                style={{ color: p.color }}
+                aria-label={`Visit the live ${p.name} site`}
+              >
+                Live Site
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                  <path d="M7 17L17 7M7 7h10v10" />
+                </svg>
+              </a>
+            )}
+            {p.repo && (
+              <a
+                href={p.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-link"
+                style={{ color: "var(--c-text2)" }}
+                aria-label={`View the ${p.name} source code on GitHub`}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.82 1.18 1.85 1.18 3.11 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z" />
+                </svg>
+                Source Code
+              </a>
+            )}
+            {!p.repo && p.url && (
+              <span
+                style={{
+                  fontFamily: "'DM Mono', monospace",
+                  fontSize: "0.62rem",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "var(--c-text3)",
+                }}
+                title="Source belongs to the client and is not public"
+              >
+                Private repo
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </Reveal>
+  );
+}
+
+const LABEL_STYLE = {
+  display: "block",
+  fontFamily: "'DM Mono', monospace",
+  fontSize: "0.65rem",
+  letterSpacing: "0.12em",
+  textTransform: "uppercase",
+  color: "var(--c-text3)",
+  marginBottom: "8px",
+};
+
+function ContactForm() {
+  const [values, setValues] = useState({ name: "", email: "", subject: "", message: "" });
+  const [errors, setErrors] = useState({});
+  const [sent, setSent] = useState(false);
+
+  const update = (field) => (e) => {
+    setValues(v => ({ ...v, [field]: e.target.value }));
+    setErrors(err => (err[field] ? { ...err, [field]: undefined } : err));
+  };
+
+  const validate = () => {
+    const next = {};
+    if (!values.name.trim()) next.name = "Please tell me your name";
+    if (!values.email.trim()) next.email = "An email address is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values.email.trim())) next.email = "That email address looks invalid";
+    if (!values.message.trim()) next.message = "Please add a short message";
+    return next;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const next = validate();
+    setErrors(next);
+    if (Object.keys(next).length > 0) {
+      const first = document.getElementById(`contact-${Object.keys(next)[0]}`);
+      first?.focus();
+      return;
+    }
+
+    const subject = values.subject.trim() || `Portfolio enquiry from ${values.name.trim()}`;
+    const body = [
+      values.message.trim(),
+      "",
+      "—",
+      `Name:  ${values.name.trim()}`,
+      `Email: ${values.email.trim()}`,
+      "Sent from syedshabandeve.github.io/portfolio",
+    ].join("\r\n");
+
+    window.location.href =
+      `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setSent(true);
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      style={{
+        background: "var(--c-bg3)",
+        border: "1px solid var(--c-line)",
+        borderRadius: "20px",
+        padding: "clamp(1.5rem, 5vw, 2.5rem)",
+      }}
+    >
+      <div className="contact-grid">
+        <div>
+          <label style={LABEL_STYLE} htmlFor="contact-name">Name</label>
+          <input
+            id="contact-name"
+            className={`contact-input${errors.name ? " invalid" : ""}`}
+            type="text"
+            name="name"
+            autoComplete="name"
+            placeholder="Your name"
+            value={values.name}
+            onChange={update("name")}
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? "err-name" : undefined}
+          />
+          {errors.name && <span className="field-error" id="err-name">{errors.name}</span>}
+        </div>
+        <div>
+          <label style={LABEL_STYLE} htmlFor="contact-email">Email</label>
+          <input
+            id="contact-email"
+            className={`contact-input${errors.email ? " invalid" : ""}`}
+            type="email"
+            name="email"
+            autoComplete="email"
+            placeholder="your@email.com"
+            value={values.email}
+            onChange={update("email")}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "err-email" : undefined}
+          />
+          {errors.email && <span className="field-error" id="err-email">{errors.email}</span>}
+        </div>
+      </div>
+
+      <div style={{ marginBottom: "1rem" }}>
+        <label style={LABEL_STYLE} htmlFor="contact-subject">Subject <span style={{ textTransform: "none", letterSpacing: 0 }}>(optional)</span></label>
+        <input
+          id="contact-subject"
+          className="contact-input"
+          type="text"
+          name="subject"
+          placeholder="Project enquiry / Job offer / Collab..."
+          value={values.subject}
+          onChange={update("subject")}
+        />
+      </div>
+
+      <div style={{ marginBottom: "1.5rem" }}>
+        <label style={LABEL_STYLE} htmlFor="contact-message">Message</label>
+        <textarea
+          id="contact-message"
+          className={`contact-input${errors.message ? " invalid" : ""}`}
+          rows={5}
+          name="message"
+          placeholder="Tell me about your project..."
+          style={{ resize: "vertical" }}
+          value={values.message}
+          onChange={update("message")}
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? "err-message" : undefined}
+        />
+        {errors.message && <span className="field-error" id="err-message">{errors.message}</span>}
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href={GITHUB} target="_blank" rel="noopener noreferrer" className="social-link" aria-label="GitHub profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </a>
+          <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="social-link" aria-label="Call me">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 012 1.18 2 2 0 014 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          </a>
+        </div>
+        <button className="btn-accent" type="submit">Send Message →</button>
+      </div>
+
+      <p
+        role="status"
+        style={{
+          marginTop: "1.25rem",
+          fontFamily: "'DM Mono', monospace",
+          fontSize: "0.7rem",
+          lineHeight: 1.7,
+          letterSpacing: "0.04em",
+          color: sent ? "var(--c-gold)" : "var(--c-text3)",
+        }}
+      >
+        {sent
+          ? `Your email client should now be open with the message ready. If nothing happened, write to ${EMAIL} directly.`
+          : `This opens your email app with the message pre-filled — or email ${EMAIL} directly.`}
+      </p>
+    </form>
   );
 }
 
@@ -312,108 +537,23 @@ export default function Portfolio() {
     return () => obs.disconnect();
   }, []);
 
+  /* close the mobile drawer on Escape, and when resizing back up to desktop */
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => { if (e.key === "Escape") setMenuOpen(false); };
+    const onResize = () => { if (window.innerWidth > 860) setMenuOpen(false); };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [menuOpen]);
+
   const scrollTo = (id) => {
     document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
-
-  /* ── GLOBAL STYLES injected once ── */
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.textContent = `
-      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap');
-      :root {
-        --c-bg:       #09090b;
-        --c-bg2:      #111113;
-        --c-bg3:      #18181b;
-        --c-card:     #141416;
-        --c-card-hover:#18181d;
-        --c-chip:     #1e1e22;
-        --c-line:     rgba(255,255,255,0.08);
-        --c-line2:    rgba(255,255,255,0.14);
-        --c-text:     #f0ede6;
-        --c-text2:    rgba(240,237,230,0.55);
-        --c-text3:    rgba(240,237,230,0.32);
-        --c-accent:   #e63946;
-        --c-accent2:  #ff6b6b;
-        --c-gold:     #d4a853;
-      }
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
-      body { background: var(--c-bg); color: var(--c-text); font-family: 'DM Sans', sans-serif; overflow-x: hidden; line-height: 1.6; }
-      ::selection { background: var(--c-accent); color: #fff; }
-      ::-webkit-scrollbar { width: 5px; }
-      ::-webkit-scrollbar-track { background: var(--c-bg); }
-      ::-webkit-scrollbar-thumb { background: var(--c-accent); border-radius: 10px; }
-
-      @keyframes fadeUp   { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
-      @keyframes blink    { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-      @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      @keyframes grain    { 0%,100%{transform:translate(0,0)} 10%{transform:translate(-2%,-3%)} 20%{transform:translate(3%,1%)} 30%{transform:translate(-1%,4%)} 40%{transform:translate(2%,-2%)} 50%{transform:translate(-3%,3%)} }
-
-      .grain::before {
-        content: '';
-        position: fixed; inset: -50%; z-index: 0; pointer-events: none;
-        width: 200%; height: 200%;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-        opacity: 0.025;
-        animation: grain 8s steps(10) infinite;
-      }
-
-      .hero-glow {
-        position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none;
-      }
-      .cursor-blink { animation: blink 1s step-end infinite; }
-      .nav-pill {
-        padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; letter-spacing: 0.08em;
-        text-transform: uppercase; font-weight: 500; cursor: pointer; border: none;
-        transition: all 0.2s;
-        font-family: 'DM Mono', monospace;
-        background: transparent; color: rgba(240,237,230,0.55);
-      }
-      .nav-pill:hover { color: var(--c-text); }
-      .nav-pill.active { background: var(--c-accent); color: #fff; }
-      .skill-tab {
-        padding: 8px 20px; border-radius: 100px; font-size: 0.75rem; letter-spacing: 0.1em;
-        text-transform: uppercase; font-weight: 500; cursor: pointer; border: 1px solid var(--c-line2);
-        transition: all 0.25s; font-family: 'DM Mono', monospace; background: transparent;
-        color: var(--c-text2);
-      }
-      .skill-tab:hover { border-color: var(--c-accent); color: var(--c-accent); }
-      .skill-tab.active { background: var(--c-accent); border-color: var(--c-accent); color: #fff; }
-      .tl-dot {
-        width: 12px; height: 12px; border-radius: 50%;
-        background: var(--c-accent); border: 2px solid var(--c-bg);
-        position: absolute; left: -6px; top: 6px; flex-shrink: 0;
-        box-shadow: 0 0 0 4px rgba(230,57,70,0.2);
-      }
-      .contact-input {
-        width: 100%; background: var(--c-bg3); border: 1px solid var(--c-line2);
-        border-radius: 10px; padding: 14px 18px; color: var(--c-text);
-        font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-        outline: none; transition: border-color 0.2s;
-      }
-      .contact-input:focus { border-color: var(--c-accent); }
-      .contact-input::placeholder { color: var(--c-text3); }
-      .btn-accent {
-        background: var(--c-accent); color: #fff; border: none;
-        padding: 14px 36px; border-radius: 10px; font-size: 0.85rem;
-        letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
-        cursor: pointer; font-family: 'DM Mono', monospace;
-        transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-      }
-      .btn-accent:hover { background: #c8102e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(230,57,70,0.35); }
-      .social-link {
-        display: flex; align-items: center; justify-content: center;
-        width: 44px; height: 44px; border-radius: 10px;
-        border: 1px solid var(--c-line2); color: var(--c-text2);
-        text-decoration: none; transition: all 0.2s;
-      }
-      .social-link:hover { border-color: var(--c-accent); color: var(--c-accent); background: rgba(230,57,70,0.08); }
-    `;
-    document.head.appendChild(style);
-    return () => document.head.removeChild(style);
-  }, []);
 
   /* ── RENDER ── */
   return (
@@ -423,14 +563,14 @@ export default function Portfolio() {
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "0 2rem", height: "60px",
+        padding: "0 clamp(1rem, 4vw, 2rem)", height: "var(--nav-h)",
         background: "rgba(9,9,11,0.85)", backdropFilter: "blur(20px)",
         borderBottom: "1px solid var(--c-line)",
       }}>
         <a href="#about" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }} aria-label="Home">
           <img src="/logo.svg" alt="SA" style={{ width: 36, height: 36, display: 'block' }} />
         </a>
-        <div style={{ display: "flex", gap: "4px" }}>
+        <div className="nav-desktop">
           {NAV.map(n => (
             <button
               key={n}
@@ -439,13 +579,37 @@ export default function Portfolio() {
             >{n}</button>
           ))}
         </div>
-        <a href="mailto:syedshaban785@gmail.com" style={{
-          fontFamily: "'DM Mono', monospace", fontSize: "0.72rem", letterSpacing: "0.1em",
-          textTransform: "uppercase", color: "var(--c-accent)", textDecoration: "none",
-          border: "1px solid var(--c-accent)", padding: "6px 14px", borderRadius: "100px",
-          transition: "all 0.2s",
-        }}>Hire Me</a>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <a href="mailto:syedshaban785@gmail.com?subject=Job%20opportunity%20for%20Syed%20Shaban%20Ahmad" className="nav-cta">Hire Me</a>
+          <button
+            className={`nav-toggle${menuOpen ? " open" : ""}`}
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+          >
+            <span /><span /><span />
+          </button>
+        </div>
       </nav>
+
+      {/* ── MOBILE NAV DRAWER ── */}
+      <div id="mobile-nav" className={`nav-drawer${menuOpen ? " open" : ""}`}>
+        {NAV.map(n => (
+          <button
+            key={n}
+            className={`nav-pill${activeSection === n.toLowerCase() ? " active" : ""}`}
+            onClick={() => scrollTo(n.toLowerCase())}
+          >{n}</button>
+        ))}
+        <a
+          href="mailto:syedshaban785@gmail.com?subject=Job%20opportunity%20for%20Syed%20Shaban%20Ahmad"
+          className="nav-cta"
+          style={{ marginTop: "0.6rem", textAlign: "center", padding: "12px 14px" }}
+          onClick={() => setMenuOpen(false)}
+        >Hire Me</a>
+      </div>
 
       {/* ── HERO ── */}
       <section id="about" style={{ minHeight: "100vh", position: "relative", overflow: "hidden", display: "flex", alignItems: "center", paddingTop: "60px" }}>
@@ -556,7 +720,7 @@ export default function Portfolio() {
       </section>
 
       {/* ── SKILLS ── */}
-      <section id="skills" style={{ padding: "6rem 2rem", background: "var(--c-bg2)" }}>
+      <section id="skills" style={{ padding: "clamp(4rem, 10vw, 6rem) clamp(1.25rem, 5vw, 2rem)", background: "var(--c-bg2)" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <Reveal>
             <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--c-accent)", marginBottom: "0.5rem" }}>// 002 Technical Skills</p>
@@ -600,7 +764,7 @@ export default function Portfolio() {
       </section>
 
       {/* ── EXPERIENCE ── */}
-      <section id="experience" style={{ padding: "6rem 2rem", background: "var(--c-bg)" }}>
+      <section id="experience" style={{ padding: "clamp(4rem, 10vw, 6rem) clamp(1.25rem, 5vw, 2rem)", background: "var(--c-bg)" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <Reveal>
             <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--c-accent)", marginBottom: "0.5rem" }}>// 003 Career History</p>
@@ -661,20 +825,45 @@ export default function Portfolio() {
       </section>
 
       {/* ── PROJECTS ── */}
-      <section id="projects" style={{ padding: "6rem 2rem", background: "var(--c-bg2)" }}>
+      <section id="projects" style={{ padding: "clamp(4rem, 10vw, 6rem) clamp(1.25rem, 5vw, 2rem)", background: "var(--c-bg2)" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <Reveal>
             <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--c-accent)", marginBottom: "0.5rem" }}>// 004 Portfolio</p>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 700, marginBottom: "3rem", lineHeight: 1.1 }}>Live Projects</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 5vw, 3.5rem)", fontWeight: 700, marginBottom: "1rem", lineHeight: 1.1 }}>Live Projects</h2>
+            <p style={{ fontSize: "0.92rem", color: "var(--c-text2)", lineHeight: 1.8, marginBottom: "3rem", maxWidth: "620px" }}>
+              Client work currently running in production. These repositories are owned by the clients, so the source stays private &mdash; the live sites are linked below.
+            </p>
           </Reveal>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
             {PROJECTS.map((p, i) => <ProjectCard key={p.idx} p={p} idx={i} />)}
           </div>
+
+          {/* Open-source work — readable code for anyone reviewing */}
+          <Reveal>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.6rem, 4vw, 2.6rem)", fontWeight: 700, marginTop: "4.5rem", marginBottom: "1rem", lineHeight: 1.1 }}>Open Source</h2>
+            <p style={{ fontSize: "0.92rem", color: "var(--c-text2)", lineHeight: 1.8, marginBottom: "2.5rem", maxWidth: "620px" }}>
+              Builds I own outright, with the full source published on GitHub &mdash; read the components, state handling and routing directly.
+            </p>
+          </Reveal>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem" }}>
+            {OSS_PROJECTS.map((p, i) => <ProjectCard key={p.idx} p={p} idx={i} />)}
+          </div>
+
+          <Reveal delay={0.15}>
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "3rem" }}>
+              <a href="https://github.com/SyedShabanDeve" target="_blank" rel="noopener noreferrer" className="btn-ghost">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.3-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.82 1.18 1.85 1.18 3.11 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z" />
+                </svg>
+                See all repositories
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* ── CONTACT ── */}
-      <section id="contact" style={{ padding: "6rem 2rem", background: "var(--c-bg)" }}>
+      <section id="contact" style={{ padding: "clamp(4rem, 10vw, 6rem) clamp(1.25rem, 5vw, 2rem)", background: "var(--c-bg)" }}>
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
           <Reveal>
             <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--c-accent)", marginBottom: "0.5rem" }}>// 005 Get In Touch</p>
@@ -683,43 +872,7 @@ export default function Portfolio() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div style={{
-              background: "var(--c-bg3)", border: "1px solid var(--c-line)",
-              borderRadius: "20px", padding: "2.5rem",
-            }}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
-                <div>
-                  <label style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--c-text3)", marginBottom: "8px" }}>Name</label>
-                  <input className="contact-input" type="text" placeholder="Your name" />
-                </div>
-                <div>
-                  <label style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--c-text3)", marginBottom: "8px" }}>Email</label>
-                  <input className="contact-input" type="email" placeholder="your@email.com" />
-                </div>
-              </div>
-              <div style={{ marginBottom: "1rem" }}>
-                <label style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--c-text3)", marginBottom: "8px" }}>Subject</label>
-                <input className="contact-input" type="text" placeholder="Project enquiry / Job offer / Collab..." />
-              </div>
-              <div style={{ marginBottom: "1.5rem" }}>
-                <label style={{ display: "block", fontFamily: "'DM Mono', monospace", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--c-text3)", marginBottom: "8px" }}>Message</label>
-                <textarea className="contact-input" rows={5} placeholder="Tell me about your project..." style={{ resize: "vertical" }} />
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-                <div style={{ display: "flex", gap: "10px" }}>
-                  <a href="https://www.linkedin.com/in/syedshaban785" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-                  </a>
-                  <a href="https://github.com/SyedShabanDeve" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="GitHub">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-                  </a>
-                  <a href="tel:+923079415512" className="social-link" aria-label="Phone">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 012 1.18 2 2 0 014 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-                  </a>
-                </div>
-                <button className="btn-accent" onClick={() => window.open("mailto:syedshaban785@gmail.com")}>Send Message →</button>
-              </div>
-            </div>
+            <ContactForm />
           </Reveal>
 
           <Reveal delay={0.2}>
