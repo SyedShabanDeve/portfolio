@@ -4,6 +4,7 @@
 
 **Full Stack Developer · MERN &amp; WordPress · Lahore, Pakistan**
 
+[![Build](https://github.com/SyedShabanDeve/portfolio/actions/workflows/build.yml/badge.svg)](https://github.com/SyedShabanDeve/portfolio/actions/workflows/build.yml)
 [![Live Site](https://img.shields.io/badge/Live-syedshabandeve.github.io%2Fportfolio-e63946?style=flat-square)](https://syedshabandeve.github.io/portfolio/)
 [![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)

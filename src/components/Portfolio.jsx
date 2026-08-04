@@ -122,6 +122,7 @@ const OSS_PROJECTS = [
     type: "React · E-Commerce",
     desc: "Multi-page storefront with a persistent cart (variant-aware by size and colour), category routing, product detail pages, checkout flow, and a content admin panel — all on React 19 and Context state.",
     tags: ["React 19", "React Router", "Context API", "Tailwind"],
+    url: "https://syedshabandeve.github.io/catchy-storefront/",
     repo: "https://github.com/SyedShabanDeve/catchy-storefront",
     color: "#d4a853",
   },
