@@ -1,0 +1,161 @@
+﻿/* ============================================================
+   Design tokens
+   Dark is the default. `data-theme="light"` on <html> flips the
+   palette; an inline script in index.html sets it before first
+   paint so the theme never flashes.
+   ============================================================ */
+
+:root {
+  /* ---- Type ------------------------------------------------ */
+  --font-display: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --step--2: clamp(0.66rem, 0.63rem + 0.14vw, 0.72rem);
+  --step--1: clamp(0.78rem, 0.75rem + 0.16vw, 0.86rem);
+  --step-0: clamp(0.94rem, 0.91rem + 0.18vw, 1.02rem);
+  --step-1: clamp(1.1rem, 1.03rem + 0.35vw, 1.3rem);
+  --step-2: clamp(1.35rem, 1.2rem + 0.7vw, 1.75rem);
+  --step-3: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --step-4: clamp(2.3rem, 1.6rem + 3.2vw, 4rem);
+  --step-5: clamp(3rem, 1.4rem + 7.4vw, 8rem);
+
+  /* ---- Space & shape --------------------------------------- */
+  --container: 1140px;
+  --container-narrow: 780px;
+  --nav-h: 68px;
+  --gutter: clamp(1.15rem, 4vw, 2.5rem);
+  --section-y: clamp(4.5rem, 9vw, 8rem);
+
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---- Dark palette (default) ------------------------------ */
+  --bg: #08080b;
+  --bg-soft: #0c0c11;
+  --surface: #111117;
+  --surface-2: #17171f;
+  --surface-3: #1f1f29;
+  --border: rgba(255, 255, 255, 0.078);
+  --border-2: rgba(255, 255, 255, 0.155);
+
+  --text: #f3f1eb;
+  --text-2: rgba(243, 241, 235, 0.64);
+  --text-3: rgba(243, 241, 235, 0.4);
+
+  --accent: #ff4c5b;
+  --accent-hover: #ff6b78;
+  --accent-ink: #140406;
+  --accent-soft: rgba(255, 76, 91, 0.13);
+  --accent-line: rgba(255, 76, 91, 0.32);
+
+  --gold: #e2b45e;
+  --violet: #a78bfa;
+  --azure: #58a9f5;
+  --emerald: #45c08a;
+  --crimson: #ff4c5b;
+
+  --grid-line: rgba(255, 255, 255, 0.045);
+  --glow-1: rgba(255, 76, 91, 0.2);
+  --glow-2: rgba(226, 180, 94, 0.11);
+  --glow-3: rgba(167, 139, 250, 0.12);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 10px 30px -12px rgba(0, 0, 0, 0.75);
+  --shadow-lg: 0 28px 60px -20px rgba(0, 0, 0, 0.8);
+
+  --scrim: rgba(8, 8, 11, 0.93);
+  --noise-opacity: 0.028;
+
+  color-scheme: dark;
+}
+
+/* ---- Light palette ---------------------------------------- */
+:root[data-theme='light'] {
+  --bg: #fbfaf7;
+  --bg-soft: #f4f2ec;
+  --surface: #ffffff;
+  --surface-2: #f7f5f0;
+  --surface-3: #eeebe3;
+  --border: rgba(24, 22, 17, 0.1);
+  --border-2: rgba(24, 22, 17, 0.19);
+
+  --text: #14130f;
+  --text-2: rgba(20, 19, 15, 0.68);
+  --text-3: rgba(20, 19, 15, 0.46);
+
+  --accent: #d42233;
+  --accent-hover: #b71627;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(212, 34, 51, 0.075);
+  --accent-line: rgba(212, 34, 51, 0.26);
+
+  --gold: #a2761f;
+  --violet: #6541d6;
+  --azure: #1a68c9;
+  --emerald: #12734c;
+  --crimson: #d42233;
+
+  --grid-line: rgba(24, 22, 17, 0.045);
+  --glow-1: rgba(212, 34, 51, 0.11);
+  --glow-2: rgba(162, 118, 31, 0.09);
+  --glow-3: rgba(101, 65, 214, 0.08);
+
+  --shadow-sm: 0 1px 2px rgba(24, 22, 17, 0.06);
+  --shadow-md: 0 10px 28px -14px rgba(24, 22, 17, 0.28);
+  --shadow-lg: 0 26px 56px -22px rgba(24, 22, 17, 0.3);
+
+  --scrim: rgba(251, 250, 247, 0.94);
+  --noise-opacity: 0.035;
+
+  color-scheme: light;
+}
+
+/* Honour the OS preference when the visitor has not chosen. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']):not([data-theme='light']) {
+    --bg: #fbfaf7;
+    --bg-soft: #f4f2ec;
+    --surface: #ffffff;
+    --surface-2: #f7f5f0;
+    --surface-3: #eeebe3;
+    --border: rgba(24, 22, 17, 0.1);
+    --border-2: rgba(24, 22, 17, 0.19);
+    --text: #14130f;
+    --text-2: rgba(20, 19, 15, 0.68);
+    --text-3: rgba(20, 19, 15, 0.46);
+    --accent: #d42233;
+    --accent-hover: #b71627;
+    --accent-ink: #ffffff;
+    --accent-soft: rgba(212, 34, 51, 0.075);
+    --accent-line: rgba(212, 34, 51, 0.26);
+    --gold: #a2761f;
+    --violet: #6541d6;
+    --azure: #1a68c9;
+    --emerald: #12734c;
+    --crimson: #d42233;
+    --grid-line: rgba(24, 22, 17, 0.045);
+    --glow-1: rgba(212, 34, 51, 0.11);
+    --glow-2: rgba(162, 118, 31, 0.09);
+    --glow-3: rgba(101, 65, 214, 0.08);
+    --shadow-sm: 0 1px 2px rgba(24, 22, 17, 0.06);
+    --shadow-md: 0 10px 28px -14px rgba(24, 22, 17, 0.28);
+    --shadow-lg: 0 26px 56px -22px rgba(24, 22, 17, 0.3);
+    --scrim: rgba(251, 250, 247, 0.94);
+    --noise-opacity: 0.035;
+    color-scheme: light;
+  }
+}
+
+/* Per-project accent hooks used by the project cards. */
+.t-crimson { --tint: var(--crimson); }
+.t-gold { --tint: var(--gold); }
+.t-violet { --tint: var(--violet); }
+.t-azure { --tint: var(--azure); }
+.t-emerald { --tint: var(--emerald); }

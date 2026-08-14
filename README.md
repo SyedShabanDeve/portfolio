@@ -8,11 +8,14 @@
 [![Live Site](https://img.shields.io/badge/Live-syedshabandeve.github.io%2Fportfolio-e63946?style=flat-square)](https://syedshabandeve.github.io/portfolio/)
 [![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react&logoColor=black)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-8-646cff?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)
-[![License: MIT](https://img.shields.io/badge/License-MIT-d4a853?style=flat-square)](LICENSE)
+[![No runtime deps](https://img.shields.io/badge/Runtime%20deps-React%20only-d4a853?style=flat-square)](package.json)
+[![License: MIT](https://img.shields.io/badge/License-MIT-6c757d?style=flat-square)](LICENSE)
 
 <a href="https://syedshabandeve.github.io/portfolio/">
   <img src="public/og-image.png" alt="Syed Shaban Ahmad — Full Stack Developer" width="720" />
 </a>
+
+**→ [View it live](https://syedshabandeve.github.io/portfolio/)**
 
 </div>
 
@@ -20,19 +23,27 @@
 
 ## About
 
-A single-page portfolio built from scratch in React — no template, no page builder, no UI kit. It presents my experience, technical skills, and the client projects I have shipped, and gives recruiters a direct route to contact me.
+A single-page portfolio built from scratch — no template, no page builder, no UI kit, and no
+component library. It presents my experience, the work I have shipped, and a direct route to
+contact me.
 
-**→ [View it live](https://syedshabandeve.github.io/portfolio/)**
+The only runtime dependencies are `react` and `react-dom`. Everything else — the design system,
+the icon set, the scroll and reveal behaviour, the theme switching — is written for this project.
 
 ## Features
 
-- **Section-aware navigation** — an `IntersectionObserver` highlights the nav pill for whichever section is on screen.
-- **Responsive by design** — a collapsible drawer replaces the pill bar under 860px, closing on `Escape`, on navigation, and on resize back to desktop.
-- **Scroll-reveal animations** — a reusable `Reveal` component fades content in once, then disconnects its observer so nothing keeps running off-screen.
-- **Animated typewriter headline** cycling through role titles.
-- **Validated contact form** — client-side validation with inline, screen-reader-linked error messages; a valid submission opens the visitor's mail client with the whole message pre-composed.
-- **Accessible** — semantic landmarks, `aria-invalid` / `aria-describedby` wiring on fields, labelled icon links, visible focus rings, and a `prefers-reduced-motion` fallback that disables animation.
-- **SEO and social ready** — descriptive metadata, canonical URL, Open Graph and Twitter cards, plus JSON-LD `Person` structured data.
+| | |
+| --- | --- |
+| **Light and dark themes** | A toggle that respects `prefers-color-scheme`, persists the visitor's choice, and applies it in an inline script before first paint so the page never flashes the wrong palette. |
+| **Design-token system** | One layer of CSS custom properties drives both palettes, a fluid `clamp()` type scale, spacing, radii and easing. Changing a token changes the whole site. |
+| **Section-aware navigation** | The nav highlight tracks whichever section is nearest the top of the viewport, and anchors to the last section at the end of the page. |
+| **Scroll progress + back to top** | A single rAF-throttled scroll listener feeds the progress bar, the sticky nav state and the back-to-top button. |
+| **Filterable project grid** | Work filters by discipline — full stack, WordPress, open source — with featured builds given a wider card. |
+| **Reveal animations** | A reusable `Reveal` component fades content in once, then disconnects its observer so nothing keeps running off-screen. |
+| **Validated contact form** | Inline, screen-reader-linked error messages; a valid submission opens the visitor's own mail client with the whole message composed. Nothing routes through a third party. |
+| **Downloadable CV** | A typeset, text-selectable PDF plus the original DOCX for applicant tracking systems. |
+| **Accessible** | Skip link, semantic landmarks, `aria-invalid` / `aria-describedby` wiring, `aria-pressed` filters, labelled icon links, visible focus rings, and a `prefers-reduced-motion` fallback that disables animation. |
+| **SEO and social ready** | Descriptive metadata, canonical URL, Open Graph and Twitter cards, JSON-LD `Person` structured data, `robots.txt`, `sitemap.xml` and a web manifest. |
 
 ## Tech Stack
 
@@ -40,8 +51,10 @@ A single-page portfolio built from scratch in React — no template, no page bui
 | --- | --- |
 | Framework | React 19 |
 | Build tool | Vite 8 |
-| Styling | Plain CSS with custom properties (design tokens) + Tailwind utilities |
-| Linting | ESLint 10 (react-hooks, react-refresh) |
+| Styling | Hand-written CSS with custom properties — no framework |
+| Icons | Inline SVG sprite in `components/ui/Icon.jsx` — no icon package |
+| Linting | ESLint 10 (`react-hooks`, `react-refresh`) |
+| CI | GitHub Actions — lint and build on every push and PR |
 | Hosting | GitHub Pages via `gh-pages` |
 
 ## Running Locally
@@ -53,7 +66,7 @@ npm install
 npm run dev
 ```
 
-The dev server prints a local URL (Vite defaults to `http://localhost:5173`).
+Vite prints a local URL, by default `http://localhost:5173/portfolio/`.
 
 ### Scripts
 
@@ -70,28 +83,47 @@ The dev server prints a local URL (Vite defaults to `http://localhost:5173`).
 ```
 portfolio/
 ├── public/
-│   ├── og-image.png          # 1200x630 social preview card
-│   ├── logo.svg              # Favicon and navbar mark
-│   └── favicon.svg
+│   ├── og-image.png              # 1200x630 social preview card
+│   ├── logo.svg  favicon.svg     # Brand mark
+│   ├── Syed-Shaban-Ahmad-CV.pdf  # Downloadable CV
+│   ├── robots.txt  sitemap.xml  site.webmanifest
 ├── src/
+│   ├── data/site.js              # Every piece of page content, in one file
+│   ├── styles/
+│   │   ├── tokens.css            # Palettes, type scale, spacing, easing
+│   │   ├── base.css              # Reset, layout primitives, animations
+│   │   └── components.css        # Component classes
+│   ├── hooks/
+│   │   ├── useTheme.js           # Light/dark with system + localStorage
+│   │   ├── useScrollState.js     # Progress, sticky nav, past-the-fold
+│   │   ├── useActiveSection.js   # Nav highlight tracking
+│   │   ├── useInView.js          # One-shot IntersectionObserver
+│   │   └── useTypewriter.js      # Hero role cycling
 │   ├── components/
-│   │   └── Portfolio.jsx     # Page sections, data, and the contact form
-│   ├── index.css             # Design tokens, component classes, responsive rules
+│   │   ├── ui/                   # Icon, Reveal, SectionHead
+│   │   └── Navbar · Hero · Marquee · About · Skills
+│   │       Experience · Projects · Contact · ContactForm
+│   │       Footer · BackToTop
+│   ├── index.css                 # Imports the three style layers
 │   ├── App.jsx
 │   └── main.jsx
-├── index.html                # Metadata, Open Graph tags, JSON-LD
-└── vite.config.js            # `base` is set to /portfolio/ for GitHub Pages
+├── index.html                    # Metadata, theme boot script, JSON-LD
+└── vite.config.js                # `base` is /portfolio/ for GitHub Pages
 ```
 
-## Deployment
+Content lives in `src/data/site.js` and nowhere else — components read from it, so updating a
+job, a project or a skill never means touching markup.
 
-The site deploys to GitHub Pages from the `dist/` build:
+## Deployment
 
 ```bash
 npm run deploy
 ```
 
-`vite.config.js` sets `base: '/portfolio/'` so hashed assets resolve correctly under the repository subpath. If you fork this and host it elsewhere, change `base` to match — and update the absolute URLs in `index.html` (canonical, `og:url`, `og:image`) to your own domain.
+`vite.config.js` sets `base: '/portfolio/'` so hashed assets resolve under the repository
+subpath. If you fork this and host it elsewhere, change `base` to match, and update the absolute
+URLs in `index.html` (canonical, `og:url`, `og:image`) plus `sitemap.xml`, `robots.txt` and
+`site.webmanifest`.
 
 ## Contact
 
@@ -102,4 +134,5 @@ npm run deploy
 
 ## License
 
-Released under the [MIT License](LICENSE). The code is free to reuse; please replace the personal content, images, and contact details with your own.
+Released under the [MIT License](LICENSE). The code is free to reuse; please replace the personal
+content, images, CV and contact details with your own.
