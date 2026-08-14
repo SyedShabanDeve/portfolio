@@ -7,25 +7,31 @@
     <title>Syed Shaban Ahmad — Full Stack Developer (MERN &amp; WordPress)</title>
     <meta
       name="description"
-      content="Full Stack Developer based in Lahore, Pakistan. I build production React applications, secure Node/Express + MongoDB APIs, and custom WordPress and WooCommerce platforms. Available for hire."
+      content="Full Stack Developer in Lahore, Pakistan. I build production React applications, secure Node/Express + MongoDB APIs, and custom WordPress and WooCommerce platforms. Three years shipping for clients in Pakistan, the UAE and the US. Available for hire."
     />
     <meta name="author" content="Syed Shaban Ahmad" />
-    <meta name="theme-color" content="#09090b" />
-    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#08080b" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta
+      name="keywords"
+      content="Full Stack Developer, MERN Stack Developer, React Developer, Node.js, Express, MongoDB, WordPress Developer, WooCommerce, Lahore, Pakistan, Syed Shaban Ahmad"
+    />
     <link rel="canonical" href="https://syedshabandeve.github.io/portfolio/" />
 
-    <link rel="icon" type="image/svg+xml" href="/portfolio/logo.svg" />
-    <link rel="shortcut icon" href="/portfolio/favicon.svg" />
+    <!-- Vite rewrites these root-relative paths with the configured base. -->
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
     <link rel="apple-touch-icon" href="/portfolio/logo.svg" />
+    <link rel="manifest" href="/portfolio/site.webmanifest" />
 
     <!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Syed Shaban Ahmad" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:url" content="https://syedshabandeve.github.io/portfolio/" />
     <meta property="og:title" content="Syed Shaban Ahmad — Full Stack Developer (MERN &amp; WordPress)" />
     <meta
       property="og:description"
-      content="Production React apps, secure Node/Express + MongoDB APIs, and custom WordPress &amp; WooCommerce builds. 3+ years shipping for clients in Pakistan, UAE and the US."
+      content="Production React apps, secure Node/Express + MongoDB APIs, and custom WordPress &amp; WooCommerce builds. 3+ years shipping for clients in Pakistan, the UAE and the US."
     />
     <meta property="og:image" content="https://syedshabandeve.github.io/portfolio/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -41,21 +47,45 @@
     />
     <meta name="twitter:image" content="https://syedshabandeve.github.io/portfolio/og-image.png" />
 
-    <!-- Fonts: preconnect + non-render-blocking load -->
+    <!--
+      Apply the saved (or system) theme before the first paint so the page
+      never flashes the wrong palette while React boots.
+    -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('ssa-theme');
+          var theme =
+            saved === 'light' || saved === 'dark'
+              ? saved
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark';
+          document.documentElement.dataset.theme = theme;
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute('content', theme === 'light' ? '#fbfaf7' : '#08080b');
+        } catch (e) {
+          document.documentElement.dataset.theme = 'dark';
+        }
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
     />
 
-    <!-- Structured data: helps recruiters' tooling and Google surface the right info -->
+    <!-- Structured data so search and recruiter tooling read the right facts -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Syed Shaban Ahmad",
         "jobTitle": "Full Stack Developer",
+        "description": "Full stack developer specialising in the MERN stack and WordPress, with three years of professional and freelance delivery.",
         "email": "mailto:syedshaban785@gmail.com",
         "telephone": "+92-307-941-5512",
         "url": "https://syedshabandeve.github.io/portfolio/",
@@ -63,12 +93,19 @@
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Lahore",
+          "addressRegion": "Punjab",
           "addressCountry": "PK"
         },
         "alumniOf": {
           "@type": "CollegeOrUniversity",
-          "name": "Riphah International University"
+          "name": "Riphah International University",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lahore",
+            "addressCountry": "PK"
+          }
         },
+        "knowsLanguage": ["Urdu", "English"],
         "knowsAbout": [
           "React",
           "Node.js",
@@ -80,7 +117,8 @@
           "JWT Authentication",
           "WordPress",
           "WooCommerce",
-          "Tailwind CSS"
+          "Tailwind CSS",
+          "Git"
         ],
         "sameAs": [
           "https://github.com/SyedShabanDeve",
@@ -88,16 +126,24 @@
         ]
       }
     </script>
-    <script type="module" crossorigin src="/portfolio/assets/index-BCsXZiF-.js"></script>
-    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-Cir2kNxw.css">
+    <script type="module" crossorigin src="/portfolio/assets/index-LIbEYpd-.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-oTMBWE3v.css">
   </head>
   <body>
     <div id="root"></div>
     <noscript>
-      <div style="padding: 2rem; font-family: system-ui, sans-serif; color: #f0ede6; background: #09090b">
-        <h1>Syed Shaban Ahmad — Full Stack Developer</h1>
-        <p>This portfolio needs JavaScript enabled. You can still reach me at
-          <a href="mailto:syedshaban785@gmail.com" style="color: #e63946">syedshaban785@gmail.com</a>.
+      <div style="max-width: 42rem; margin: 4rem auto; padding: 0 1.5rem; font-family: system-ui, sans-serif">
+        <h1 style="font-size: 1.8rem">Syed Shaban Ahmad — Full Stack Developer</h1>
+        <p style="line-height: 1.7">
+          MERN stack and WordPress developer based in Lahore, Pakistan, with three years of
+          professional and freelance experience.
+        </p>
+        <p style="line-height: 1.7">
+          This portfolio needs JavaScript enabled. You can still reach me at
+          <a href="mailto:syedshaban785@gmail.com">syedshaban785@gmail.com</a>, on
+          <a href="https://github.com/SyedShabanDeve">GitHub</a>, or on
+          <a href="https://www.linkedin.com/in/syedshaban785">LinkedIn</a>, and
+          <a href="/Syed-Shaban-Ahmad-CV.pdf">download my CV</a>.
         </p>
       </div>
     </noscript>
