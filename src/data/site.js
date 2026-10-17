@@ -1,6 +1,7 @@
 /**
  * Single source of truth for every piece of content on the site.
- * Components read from here — nothing is hard-coded in the markup.
+ * Components read from here; nothing is hard-coded in the markup.
+ * Keep it in step with the CV and the LinkedIn profile.
  */
 
 export const PROFILE = {
@@ -20,63 +21,41 @@ export const PROFILE = {
   site: "https://syedshabandeve.github.io/portfolio/",
   resume: "Syed-Shaban-Ahmad-CV.pdf",
   resumeDocx: "Syed-Shaban-Ahmad-CV.docx",
+  photo: "syed-shaban-ahmad.webp",
   available: true,
-  availability: "Open to full-time roles — remote or Lahore-based",
-  responseTime: "Usually replies within a few hours",
+  availability: "Open to full-time roles, remote or on-site",
   tagline:
-    "I build production web applications end to end — React front ends, secure Node and Express APIs on MongoDB, and custom WordPress and WooCommerce platforms.",
-  roles: [
-    "MERN Stack Developer",
-    "React Engineer",
-    "WordPress Specialist",
-    "Full Stack Developer",
-  ],
+    "I build web applications with React, Node and Express on MongoDB, and WordPress sites when a CMS is the right fit.",
+  roles: ["Full Stack Developer", "MERN Stack Developer", "React Developer", "WordPress Developer"],
 };
 
 export const NAV = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
+  { id: "work", label: "Work" },
   { id: "contact", label: "Contact" },
 ];
 
 export const STATS = [
-  { value: "3+", label: "Years building" },
-  { value: "10+", label: "Projects shipped" },
-  { value: "3", label: "Countries served" },
-  { value: "3.4", label: "CGPA / 4.0" },
+  { value: 2022, label: "Freelancing since" },
+  { value: 2024, label: "Full-time MERN since" },
+  { value: 10, suffix: "+", label: "Projects shipped" },
+  { value: 3, label: "Countries served" },
 ];
 
 export const ABOUT = {
-  lead:
-    "Full stack developer with three years of professional and freelance experience across the MERN stack and WordPress.",
+  statement:
+    "I build web applications and client websites, mostly in React, Node and Express with MongoDB behind them, and in WordPress when a CMS is the right fit.",
   body: [
-    "I take client projects from the first brief all the way through to deployment and maintenance — scoping the work, building the front end and the API behind it, putting it live, and staying on for the fixes that follow launch.",
-    "Most of what I build runs in production today: a news publication with a role-based editorial dashboard, WooCommerce stores with bespoke child themes and payment gateways, and corporate sites tuned for speed. Clients have been based in Pakistan, the UAE and the United States.",
-    "I am currently in the final semester of a BS in Computer Science at Riphah International University, Lahore.",
+    "I work full time at Sani IT-Consultant in Lahore. I started there as a frontend intern in 2023 and moved into the MERN developer role in 2024. Day to day that means React front ends, REST APIs, JWT authentication with role-based access, and going back into endpoints that got slow once the data grew.",
+    "Alongside that I have been freelancing since 2022 for clients in Pakistan, the UAE and the United States. That work covers the parts that are not code as well: scoping with a client who is not technical, hosting and DNS, migrations, and being the person who answers when something breaks after handover.",
   ],
   highlights: [
-    {
-      icon: "layers",
-      title: "End-to-end delivery",
-      text: "Brief, build, deploy, maintain. Hosting, DNS and migrations included — not handed off.",
-    },
-    {
-      icon: "shield",
-      title: "Secure by default",
-      text: "JWT authentication, role-based route protection and validated API surfaces on every build.",
-    },
-    {
-      icon: "gauge",
-      title: "Performance minded",
-      text: "Route-level code splitting, lean bundles and MongoDB query tuning where it actually counts.",
-    },
-    {
-      icon: "globe",
-      title: "International clients",
-      text: "Shipped for businesses across Pakistan, the UAE and the United States, working remotely.",
-    },
+    { icon: "layers", title: "Brief to handover", text: "Scoping, build, deployment, hosting and DNS. The fixes after launch too." },
+    { icon: "shield", title: "Auth done properly", text: "JWT authentication with role-based route protection for admin, editor and user roles." },
+    { icon: "gauge", title: "Lean bundles", text: "Inner routes behind React.lazy, code splitting, and slow endpoints reworked." },
+    { icon: "globe", title: "Remote clients", text: "Live work for businesses in Pakistan, the UAE and the United States." },
   ],
 };
 
@@ -84,144 +63,99 @@ export const SKILL_GROUPS = [
   {
     id: "frontend",
     label: "Frontend",
-    icon: "code",
-    blurb: "Component systems, state and the interfaces users actually touch.",
-    items: [
-      "React 19",
-      "JavaScript ES6+",
-      "TypeScript",
-      "React Router",
-      "Context API",
-      "Tailwind CSS",
-      "Bootstrap 5",
-      "HTML5",
-      "CSS3",
-      "Framer Motion",
-    ],
+    items: ["React 19", "JavaScript ES6+", "TypeScript", "React Router", "Context API", "Tailwind CSS", "Bootstrap 5", "HTML5", "CSS3", "Framer Motion"],
   },
   {
     id: "backend",
     label: "Backend",
-    icon: "server",
-    blurb: "APIs, data models and the auth layer that guards them.",
-    items: [
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Mongoose",
-      "REST APIs",
-      "JWT Auth",
-      "Role-based access",
-      "Schema design",
-      "Query optimisation",
-    ],
+    items: ["Node.js", "Express.js", "MongoDB", "Mongoose", "REST APIs", "JWT Auth", "Role-based access", "Schema design"],
   },
   {
     id: "cms",
     label: "CMS & Platforms",
-    icon: "wordpress",
-    blurb: "Custom WordPress work that goes past themes and page builders.",
-    items: [
-      "WordPress",
-      "WooCommerce",
-      "Child themes",
-      "Plugin configuration",
-      "Payment gateways",
-      "Brilliant Directory",
-      "PHP",
-    ],
+    items: ["WordPress", "WooCommerce", "Elementor", "Plugin configuration", "Payment gateways", "Brilliant Directory"],
   },
   {
     id: "tooling",
     label: "Tooling & Deploy",
-    icon: "terminal",
-    blurb: "How the work gets built, checked and put in front of people.",
-    items: [
-      "Git & GitHub",
-      "Vite",
-      "ESLint",
-      "GitHub Actions",
-      "GitHub Pages",
-      "Netlify",
-      "cPanel",
-      "DNS & migrations",
-    ],
+    items: ["Git & GitHub", "Vite", "npm", "Postman", "ESLint", "GitHub Actions", "Netlify", "cPanel", "Electron"],
   },
 ];
 
-/** The stack I reach for first — shown as a spotlight row. */
-export const CORE_STACK = [
-  "React",
-  "Node.js",
-  "Express",
-  "MongoDB",
-  "TypeScript",
-  "Tailwind CSS",
-  "WordPress",
-  "WooCommerce",
+/** Tags that orbit in the skills sphere. */
+export const SPHERE_SKILLS = [
+  "React", "Node.js", "Express", "MongoDB", "TypeScript", "JavaScript", "Tailwind", "WordPress",
+  "WooCommerce", "REST", "JWT", "Mongoose", "Vite", "Git", "HTML5", "CSS3", "Bootstrap", "Elementor",
+  "Postman", "Netlify", "cPanel", "Electron", "Router", "Context API", "npm", "GitHub",
 ];
 
 export const EXPERIENCE = [
   {
-    period: "Jan 2024 — Present",
+    period: "Jan 2024 – Present",
     current: true,
     role: "MERN Stack Developer",
-    company: "Private Firm",
-    location: "Lahore, Pakistan",
+    company: "Sani IT-Consultant",
+    location: "Lahore · On-site",
     type: "Full-time",
     bullets: [
-      "Build React front ends with reusable component systems and Context API state.",
-      "Write and maintain Express REST APIs over MongoDB, including schema design and reworking slow endpoints.",
-      "Implement JWT authentication with role-based route protection across the app.",
-      "Cut first-load weight on multi-page builds by moving inner routes behind React.lazy.",
+      "Build React front ends with reusable components and Context API state management across client projects.",
+      "Write and maintain Node.js and Express REST APIs over MongoDB, including schema design, query optimisation and fixing endpoints that slowed down as the data grew.",
+      "Implement JWT authentication with role-based route protection for admin, editor and standard user roles.",
+      "Cut first-load bundle weight on multi-page builds by moving inner routes behind React.lazy and code splitting.",
+      "Debug and refactor existing codebases, and hand over documented work to clients and the internal team.",
     ],
     stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
   },
   {
-    period: "Jun 2023 — Dec 2023",
+    period: "Jun 2023 – Dec 2023",
     role: "Web Development Intern",
-    company: "Sani IT Consultant",
-    location: "Lahore, Pakistan",
+    company: "Sani IT-Consultant",
+    location: "Lahore",
     type: "Internship",
     bullets: [
-      "Six-month frontend programme covering HTML, CSS, JavaScript and early React.",
+      "Six-month frontend internship working in HTML5, CSS3, JavaScript and React.",
       "Contributed to live client websites under a senior developer's review.",
-      "Customised WordPress themes and configured plugins against client requirements.",
-      "Awarded an official internship certificate on completion.",
+      "Customised WordPress themes and configured plugins to match client requirements.",
     ],
     stack: ["HTML5", "CSS3", "JavaScript", "React", "WordPress"],
   },
   {
-    period: "2022 — Present",
+    period: "Jan 2022 – Present",
+    current: true,
     role: "Freelance Web Developer",
     company: "Self-employed",
     location: "Remote",
     type: "Freelance",
     bullets: [
-      "Built custom WordPress websites for clients in Pakistan, the UAE and the United States.",
-      "Delivered WooCommerce stores end to end: catalogue setup, payment gateways and order handling.",
+      "Build and deliver custom WordPress websites for clients in Pakistan, the UAE and the United States.",
+      "Deliver WooCommerce stores end to end: catalogue setup, payment gateways, shipping rules and order handling.",
       "Set up Brilliant Directory platforms for membership and listing-based businesses.",
-      "Handled hosting, DNS, migrations and post-launch fixes directly with clients.",
+      "Handle hosting, DNS, deployment, migrations and post-launch fixes directly with clients.",
     ],
-    stack: ["WordPress", "WooCommerce", "PHP", "React", "cPanel"],
+    stack: ["WordPress", "WooCommerce", "Elementor", "cPanel"],
   },
 ];
 
-export const EDUCATION = {
-  degree: "BS Computer Science",
-  school: "Riphah International University",
-  location: "Lahore, Pakistan",
-  period: "2023 — 2026",
-  detail: "Final semester · expected graduation 2026",
-  grade: "3.4 / 4.0",
-};
+export const EDUCATION = [
+  {
+    degree: "BS Computer Science",
+    school: "Riphah International University, Lahore",
+    period: "2026 – 2028",
+    detail: "In progress, alongside full-time work",
+    grade: "CGPA 3.4 / 4.0",
+  },
+  {
+    degree: "Associate Degree in Information Technology",
+    school: "Riphah International University, Lahore",
+    period: "2023 – 2025",
+    detail: "Completed",
+    grade: "CGPA 3.66 / 4.0",
+  },
+];
 
 export const CERTIFICATIONS = [
-  {
-    name: "Web Development Internship Certificate",
-    issuer: "Sani IT Consultant",
-    year: "2023",
-  },
+  { name: "Microsoft Azure Fundamentals (AZ-900)", issuer: "Microsoft", year: "2023" },
+  { name: "Web Development Internship Certificate", issuer: "Sani IT-Consultant", year: "2024" },
 ];
 
 export const LANGUAGES = [
@@ -230,132 +164,132 @@ export const LANGUAGES = [
 ];
 
 export const FILTERS = [
-  { id: "all", label: "All work" },
-  { id: "fullstack", label: "Full stack" },
-  { id: "wordpress", label: "WordPress" },
+  { id: "all", label: "All" },
+  { id: "react", label: "React" },
+  { id: "client", label: "Client sites" },
   { id: "oss", label: "Open source" },
 ];
 
 /**
- * `repo` present  → source is public.
- * `repo` absent   → built under contract, repository stays with the client.
+ * `repo` present  -> source is public on GitHub.
+ * `repo` absent   -> client work, the repository stays with the client.
+ * Client sites list what the site is, not the backend behind it.
  */
 export const PROJECTS = [
   {
     id: "nexora",
     name: "Nexora",
-    kind: "Desktop · Multi-agent AI",
+    kind: "Desktop app · Multi-agent AI",
     year: "2026",
-    featured: true,
-    categories: ["oss", "fullstack"],
+    categories: ["oss", "react"],
     summary:
-      "A desktop workspace you talk to. Four specialised AI agents share one machine — reading files, running commands and reporting back out loud — with parallel execution, a voice-first interface and security gates on every file or system change.",
-    tags: ["Electron", "React 19", "TypeScript", "Three.js", "Vite"],
+      "A desktop workspace for Windows and macOS. Four agents share the machine: they read files, run commands and answer out loud. Bring your own model key.",
+    tags: ["Electron", "React", "TypeScript", "Vite"],
+    url: "https://syedshabandeve.github.io/nexora/",
     repo: "https://github.com/SyedShabanDeve/nexora",
-    accent: "violet",
+    hue: 265,
   },
   {
     id: "times",
     name: "The Times of New York",
-    kind: "Full-stack news platform",
+    kind: "News & publishing",
     year: "2025",
-    featured: true,
-    categories: ["fullstack"],
+    categories: ["client", "react"],
     summary:
-      "Production news publication with a ReactQuill editor, JWT admin dashboard, role-based access, draft workflow, SEO scoring and full CRUD across posts, categories and users.",
-    tags: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-    url: "https://www.thetimesofnewyork.com",
-    accent: "crimson",
+      "News and publishing site with category sections, an article workflow and an admin dashboard for the editorial team.",
+    tags: ["React", "Admin dashboard", "Editorial roles"],
+    url: "https://thetimesofnewyork.com",
+    hue: 350,
   },
   {
     id: "catchy",
     name: "Catchy Storefront",
-    kind: "React · E-commerce",
+    kind: "E-commerce storefront",
     year: "2026",
-    categories: ["oss", "fullstack"],
+    categories: ["oss", "react"],
     summary:
-      "Multi-page storefront with a variant-aware persistent cart, nested category routing, product detail pages, a checkout flow and a homepage content admin panel — built on React 19 and Context state.",
-    tags: ["React 19", "React Router 7", "Context API", "Tailwind"],
+      "React 19 storefront with a variant-aware persistent cart, nested category routing, a checkout flow and a small admin panel for homepage content.",
+    tags: ["React 19", "React Router", "Context API", "Tailwind"],
     url: "https://syedshabandeve.github.io/catchy-storefront/",
     repo: "https://github.com/SyedShabanDeve/catchy-storefront",
-    accent: "gold",
+    hue: 40,
   },
   {
     id: "uforuae",
-    name: "UFO R UAE",
-    kind: "WordPress · WooCommerce",
-    year: "2025",
-    categories: ["wordpress"],
+    name: "UFO UAE",
+    kind: "Business directory",
+    year: "2026",
+    categories: ["client"],
     summary:
-      "UAE-based WooCommerce store with a bespoke child theme, plugin integrations, configured payment gateways and a performance-tuned product catalogue.",
-    tags: ["WordPress", "WooCommerce", "PHP", "CSS"],
-    url: "https://www.uforuae.com",
-    accent: "azure",
+      "Business directory and listings portal for UAE clients, with business listings, memberships, and search by category and location.",
+    tags: ["Listings", "Memberships", "Search"],
+    url: "https://uforuae.com",
+    hue: 200,
   },
   {
     id: "sani-react",
     name: "Sani Corporate Website",
-    kind: "React · Corporate",
+    kind: "Corporate site",
     year: "2026",
-    categories: ["oss"],
+    categories: ["oss", "react"],
     summary:
-      "Seven-page corporate site where every inner page is lazy-loaded into its own chunk, with hash-aware scroll restoration on navigation and an SPA redirect config for Netlify.",
-    tags: ["React 19", "React Router 7", "Code splitting", "Netlify"],
+      "Seven-page corporate site in React 19. Every inner page is lazy-loaded into its own chunk, with hash-aware scroll restoration and a Netlify SPA config.",
+    tags: ["React 19", "Code splitting", "Netlify"],
     repo: "https://github.com/SyedShabanDeve/sani-corporate-website",
-    accent: "azure",
-  },
-  {
-    id: "usd",
-    name: "United States of Dollars",
-    kind: "WordPress · Finance",
-    year: "2024",
-    categories: ["wordpress"],
-    summary:
-      "Custom WordPress build delivered from theme development through to handover, with third-party API connections, order workflows and front-end performance tuning.",
-    tags: ["WordPress", "PHP", "JavaScript", "CSS"],
-    url: "https://www.unitedstatesofdollars.com",
-    accent: "emerald",
-  },
-  {
-    id: "directory",
-    name: "Directory Landing Redesign",
-    kind: "React · Landing page",
-    year: "2026",
-    categories: ["oss"],
-    summary:
-      "Conversion-focused landing page redesign for a business directory product — a composite search bar, staggered motion on scroll and a mobile-first layout throughout.",
-    tags: ["React 18", "Framer Motion", "Tailwind", "Vite"],
-    repo: "https://github.com/SyedShabanDeve/directory-landing-redesign",
-    accent: "emerald",
+    hue: 215,
   },
   {
     id: "sani-wp",
     name: "Sani IT Consultant",
-    kind: "WordPress · Agency",
+    kind: "Agency website",
     year: "2023",
-    categories: ["wordpress"],
+    categories: ["client"],
     summary:
-      "WordPress build for a Dubai-based marketing agency: service pages, lead capture forms and ongoing maintenance carried on past the internship period.",
-    tags: ["WordPress", "HTML5", "CSS3", "JavaScript"],
+      "Website for a Dubai marketing agency: service pages, lead capture forms and on-page SEO, maintained after launch.",
+    tags: ["WordPress", "Elementor", "SEO"],
     url: "https://saniitconsultant.com",
-    accent: "violet",
+    hue: 280,
+  },
+  {
+    id: "directory",
+    name: "Directory Landing Redesign",
+    kind: "Landing page",
+    year: "2026",
+    categories: ["oss", "react"],
+    summary:
+      "Landing page redesign for a business directory: a composite search bar, staggered motion on scroll and a mobile-first layout.",
+    tags: ["React", "Framer Motion", "Tailwind"],
+    repo: "https://github.com/SyedShabanDeve/directory-landing-redesign",
+    hue: 160,
+  },
+  {
+    id: "foldandcarry",
+    name: "FOLD&CARRY",
+    kind: "Static storefront",
+    year: "2026",
+    categories: ["oss"],
+    summary:
+      "Storefront for a slim-wallet brand, with WhatsApp ordering and cash on delivery across Pakistan.",
+    tags: ["JavaScript", "HTML", "CSS"],
+    repo: "https://github.com/SyedShabanDeve/foldandcarry",
+    hue: 25,
+  },
+  {
+    id: "usd",
+    name: "United States of Dollars",
+    kind: "Client website",
+    year: "2024",
+    categories: ["client"],
+    summary: "Website delivered from first build through to client handover.",
+    tags: ["Client work", "Handover"],
+    url: "https://unitedstatesofdollars.com",
+    hue: 140,
   },
 ];
 
-export const SERVICES = [
-  {
-    icon: "code",
-    title: "Web applications",
-    text: "React front ends backed by Express and MongoDB, with authentication, dashboards and role-aware access built in.",
-  },
-  {
-    icon: "wordpress",
-    title: "WordPress & WooCommerce",
-    text: "Custom child themes, plugin work, payment gateways and stores set up to be handed over and run without me.",
-  },
-  {
-    icon: "rocket",
-    title: "Launch & maintenance",
-    text: "Hosting, DNS, migrations and the post-launch fixes — the part most builds quietly need and rarely include.",
-  },
+export const THEMES = [
+  { id: "nebula", label: "Nebula", swatch: ["#7c5cff", "#22d3ee"] },
+  { id: "inferno", label: "Inferno", swatch: ["#ff4d2e", "#ffb020"] },
+  { id: "matrix", label: "Matrix", swatch: ["#22ff88", "#00b3ff"] },
+  { id: "daylight", label: "Daylight", swatch: ["#4f46e5", "#f43f5e"] },
 ];

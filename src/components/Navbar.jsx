@@ -1,106 +1,118 @@
-import { useEffect } from "react";
-import { NAV, PROFILE } from "../data/site";
+import { useEffect, useRef, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { NAV, PROFILE, THEMES } from "../data/site";
 import Icon from "./ui/Icon";
 
-const RESUME_URL = `${import.meta.env.BASE_URL}${PROFILE.resume}`;
+const BASE = import.meta.env.BASE_URL;
 
-export default function Navbar({ active, stuck, theme, onToggleTheme, open, onOpenChange }) {
-  // Close the drawer on Escape and once the viewport is wide enough again.
+function ThemeDots({ theme, onChange }) {
+  return (
+    <div className="themes" role="radiogroup" aria-label="Colour theme">
+      {THEMES.map((t) => (
+        <button
+          key={t.id}
+          type="button"
+          role="radio"
+          aria-checked={theme === t.id}
+          aria-label={`${t.label} theme`}
+          title={t.label}
+          className={`themes__dot${theme === t.id ? " is-on" : ""}`}
+          style={{ "--a": t.swatch[0], "--b": t.swatch[1] }}
+          onClick={() => onChange(t.id)}
+        />
+      ))}
+    </div>
+  );
+}
+
+export default function Navbar({ active, theme, onTheme }) {
+  const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [stuck, setStuck] = useState(false);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const st = ScrollTrigger.create({
+      start: 0,
+      end: "max",
+      onUpdate: (self) => {
+        setStuck(self.scroll() > 40);
+        setHidden(self.direction === 1 && self.scroll() > 600);
+      },
+    });
+    return () => st.kill();
+  }, []);
+
   useEffect(() => {
     if (!open) return undefined;
-
-    const onKey = (e) => e.key === "Escape" && onOpenChange(false);
-    const onResize = () => window.innerWidth > 920 && onOpenChange(false);
-
-    window.addEventListener("keydown", onKey);
-    window.addEventListener("resize", onResize);
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    document.documentElement.classList.add("menu-open");
+    menuRef.current?.querySelector("a")?.focus();
     return () => {
-      window.removeEventListener("keydown", onKey);
-      window.removeEventListener("resize", onResize);
+      document.removeEventListener("keydown", onKey);
+      document.documentElement.classList.remove("menu-open");
     };
-  }, [open, onOpenChange]);
-
-  const go = (event, id) => {
-    event.preventDefault();
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    onOpenChange(false);
-  };
-
-  const links = NAV.map((item) => (
-    <a
-      key={item.id}
-      href={`#${item.id}`}
-      className={`nav__link${active === item.id ? " is-active" : ""}`}
-      aria-current={active === item.id ? "true" : undefined}
-      onClick={(e) => go(e, item.id)}
-    >
-      {item.label}
-    </a>
-  ));
+  }, [open]);
 
   return (
-    <>
-      <header className={`nav${stuck ? " is-stuck" : ""}`}>
-        <div className="container nav__inner">
-          <a className="brand" href="#home" onClick={(e) => go(e, "home")} aria-label="Back to top">
-            <span className="brand__mark" aria-hidden="true">
-              SA
-            </span>
-            <span className="brand__text">
-              <span className="brand__name">{PROFILE.fullName}</span>
-              <span className="brand__role">{PROFILE.title}</span>
-            </span>
-          </a>
+    <header className={`nav${stuck ? " is-stuck" : ""}${hidden && !open ? " is-hidden" : ""}`}>
+      <div className="nav__inner">
+        <a className="nav__logo" href="#home" aria-label={`${PROFILE.fullName}, back to top`} data-cursor="Top">
+          <span className="nav__mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" width="34" height="34">
+              <rect x="6" y="6" width="20" height="20" />
+              <rect x="14" y="14" width="20" height="20" />
+              <path d="M6 6l8 8M26 6l8 8M6 26l8 8M26 26l8 8" />
+            </svg>
+          </span>
+          <span className="nav__name">Shaban</span>
+        </a>
 
-          <nav className="nav__links" aria-label="Sections">
-            {links}
-          </nav>
-
-          <div className="nav__actions">
-            <button
-              type="button"
-              className="theme-toggle"
-              onClick={onToggleTheme}
-              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-              title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-            >
-              <Icon name={theme === "dark" ? "sun" : "moon"} size={17} />
-            </button>
-
-            <a className="btn btn--primary btn--sm" href="#contact" onClick={(e) => go(e, "contact")}>
-              Hire me
-              <Icon name="arrowRight" size={14} />
+        <nav className="nav__links" aria-label="Primary">
+          {NAV.map((item, i) => (
+            <a key={item.id} href={`#${item.id}`} className={active === item.id ? "is-active" : ""}>
+              <span className="nav__num">0{i + 1}</span>
+              {item.label}
             </a>
+          ))}
+        </nav>
 
-            <button
-              type="button"
-              className={`nav__toggle${open ? " is-open" : ""}`}
-              onClick={() => onOpenChange(!open)}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-            >
-              <span />
-              <span />
-              <span />
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <div id="mobile-menu" className={`drawer${open ? " is-open" : ""}`}>
-        {links}
-        <div className="drawer__cta">
-          <a className="btn btn--primary" href="#contact" onClick={(e) => go(e, "contact")}>
-            Hire me
-            <Icon name="arrowRight" size={14} />
+        <div className="nav__end">
+          <ThemeDots theme={theme} onChange={onTheme} />
+          <a className="btn btn--ghost btn--sm nav__cv" href={`${BASE}${PROFILE.resume}`} download data-cursor="CV">
+            <Icon name="download" size={14} /> CV
           </a>
-          <a className="btn btn--outline" href={RESUME_URL} download>
-            <Icon name="download" size={15} />
-            Download CV
+          <button
+            type="button"
+            className={`nav__burger${open ? " is-open" : ""}`}
+            aria-expanded={open}
+            aria-controls="menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
+      </div>
+
+      <div id="menu" ref={menuRef} className={`menu${open ? " is-open" : ""}`} hidden={!open}>
+        <nav aria-label="Mobile">
+          {NAV.map((item, i) => (
+            <a key={item.id} href={`#${item.id}`} onClick={() => setOpen(false)} style={{ "--i": i }}>
+              <span className="nav__num">0{i + 1}</span>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <div className="menu__foot">
+          <ThemeDots theme={theme} onChange={onTheme} />
+          <a href={`${BASE}${PROFILE.resume}`} download className="btn btn--primary">
+            <Icon name="download" size={15} /> Download CV
           </a>
         </div>
       </div>
-    </>
+    </header>
   );
 }

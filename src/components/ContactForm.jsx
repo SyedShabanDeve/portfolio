@@ -45,7 +45,7 @@ export default function ContactForm() {
     const body = [
       values.message.trim(),
       "",
-      "—",
+      "--",
       `Name:  ${values.name.trim()}`,
       `Email: ${values.email.trim()}`,
       `Sent from ${PROFILE.site}`,
@@ -142,7 +142,7 @@ export default function ContactForm() {
         <p className={`form__note${sent ? " is-sent" : ""}`} role="status">
           {sent
             ? `Your mail app should be open with the message ready. If nothing happened, write to ${PROFILE.email} directly.`
-            : "This opens your own mail app with everything filled in — nothing is sent through a third party."}
+            : "This opens your own mail app with everything filled in. Nothing goes through a third party."}
         </p>
         <button className="btn btn--primary" type="submit">
           Send message

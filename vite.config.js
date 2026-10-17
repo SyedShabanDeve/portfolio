@@ -5,4 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/portfolio/',
   plugins: [react()],
+  // three.js lives in its own lazily loaded chunk, so its size never blocks first paint
+  build: { chunkSizeWarningLimit: 700 },
 })

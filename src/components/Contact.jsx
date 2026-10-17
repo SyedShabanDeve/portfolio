@@ -2,132 +2,77 @@ import { useState } from "react";
 import { PROFILE } from "../data/site";
 import ContactForm from "./ContactForm";
 import Icon from "./ui/Icon";
-import Reveal from "./ui/Reveal";
-import SectionHead from "./ui/SectionHead";
+import { Magnetic, SplitChars } from "./ui/Motion";
 
-/**
- * The value stays a real link (so mailto/tel still work); copying is its own
- * button rather than a nested control inside the anchor.
- */
-function ContactRow({ icon, label, value, href, copyable = false }) {
+const BASE = import.meta.env.BASE_URL;
+
+export default function Contact() {
   const [copied, setCopied] = useState(false);
 
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(value);
+      await navigator.clipboard.writeText(PROFILE.email);
       setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
+      setTimeout(() => setCopied(false), 2200);
     } catch {
-      /* clipboard blocked — the link beside it still works */
+      window.location.href = `mailto:${PROFILE.email}`;
     }
   };
 
-  return (
-    <div className="contact__row">
-      <a className="contact__row-main" href={href}>
-        <span className="contact__row-icon">
-          <Icon name={icon} size={15} />
-        </span>
-        <span>
-          <span className="contact__row-label">{label}</span>
-          <span className="contact__row-value">{value}</span>
-        </span>
-      </a>
+  const links = [
+    { icon: "linkedin", label: "LinkedIn", value: `in/${PROFILE.linkedinHandle}`, href: PROFILE.linkedin },
+    { icon: "github", label: "GitHub", value: PROFILE.githubHandle, href: PROFILE.github },
+    { icon: "phone", label: "Phone", value: PROFILE.phone, href: `tel:${PROFILE.phone.replace(/\s/g, "")}` },
+    { icon: "download", label: "CV", value: "PDF, one page", href: `${BASE}${PROFILE.resume}`, download: true },
+  ];
 
-      {copyable && (
-        <button type="button" className="contact__copy" onClick={copy} aria-label={`Copy ${label}`}>
-          {copied ? (
-            <>
-              <Icon name="check" size={12} /> Copied
-            </>
-          ) : (
-            "Copy"
-          )}
-        </button>
-      )}
-    </div>
-  );
-}
-
-export default function Contact() {
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section contact">
       <div className="container">
-        <SectionHead
-          index="05"
-          eyebrow="Contact"
-          title="Let's build something"
-          lede={`${PROFILE.availability}. Freelance projects welcome too — tell me what you need and I will come back with a plan.`}
-        />
+        <p className="eyebrow" data-reveal>
+          <span>06</span> Contact
+        </p>
+        <h2 className="contact__title" data-reveal>
+          <SplitChars text="Let's build" />
+          <br />
+          <SplitChars text="something real." className="outline" />
+        </h2>
 
         <div className="contact__grid">
-          <Reveal className="contact__panel">
-            <span className="badge">
-              <span className="dot" />
-              {PROFILE.responseTime}
-            </span>
-
-            <div className="contact__rows">
-              <ContactRow
-                icon="mail"
-                label="Email"
-                value={PROFILE.email}
-                href={`mailto:${PROFILE.email}`}
-                copyable
-              />
-              <ContactRow
-                icon="phone"
-                label="Phone"
-                value={PROFILE.phone}
-                href={`tel:${PROFILE.phone.replace(/\s/g, "")}`}
-                copyable
-              />
-              <div className="contact__row">
-                <span className="contact__row-main">
-                  <span className="contact__row-icon">
-                    <Icon name="pin" size={15} />
-                  </span>
-                  <span>
-                    <span className="contact__row-label">Location</span>
-                    <span className="contact__row-value">{PROFILE.location} · Remote friendly</span>
-                  </span>
-                </span>
-              </div>
+          <div className="contact__left" data-reveal>
+            <p className="contact__lead">
+              Hiring for a full stack, MERN or WordPress role, or need a site built? Email is the fastest way to reach me.
+            </p>
+            <div className="contact__email">
+              <Magnetic className="contact__mail" href={`mailto:${PROFILE.email}`} data-cursor="Mail">
+                {PROFILE.email}
+              </Magnetic>
+              <button type="button" className="btn btn--ghost btn--sm" onClick={copy} aria-live="polite">
+                <Icon name={copied ? "check" : "copy"} size={14} /> {copied ? "Copied" : "Copy"}
+              </button>
             </div>
-
-            <div className="contact__socials">
-              <a
-                className="icon-btn"
-                href={PROFILE.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub profile"
-              >
-                <Icon name="github" size={17} />
-              </a>
-              <a
-                className="icon-btn"
-                href={PROFILE.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-              >
-                <Icon name="linkedin" size={17} />
-              </a>
-              <a
-                className="icon-btn"
-                href={`${import.meta.env.BASE_URL}${PROFILE.resume}`}
-                download
-                aria-label="Download my CV"
-              >
-                <Icon name="download" size={17} />
-              </a>
-            </div>
-          </Reveal>
-
-          <Reveal delay={90}>
+            <ul className="contact__links">
+              {links.map((l) => (
+                <li key={l.label}>
+                  <a
+                    href={l.href}
+                    {...(l.download ? { download: true } : { target: l.href.startsWith("http") ? "_blank" : undefined, rel: "noreferrer" })}
+                    className="glass"
+                  >
+                    <Icon name={l.icon} size={18} />
+                    <span>
+                      <small>{l.label}</small>
+                      {l.value}
+                    </span>
+                    <Icon name="arrowRight" size={14} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="contact__form glass" data-reveal="tilt">
             <ContactForm />
-          </Reveal>
+          </div>
         </div>
       </div>
     </section>

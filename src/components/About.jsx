@@ -1,52 +1,62 @@
-import { ABOUT, LANGUAGES, SERVICES } from "../data/site";
+import { ABOUT, PROFILE } from "../data/site";
 import Icon from "./ui/Icon";
-import Reveal from "./ui/Reveal";
-import SectionHead from "./ui/SectionHead";
+import { SplitWords } from "./ui/Motion";
+import { useTilt } from "../hooks/useTilt";
+
+const BASE = import.meta.env.BASE_URL;
 
 export default function About() {
+  const photo = useTilt(14);
+
   return (
-    <section id="about" className="section">
+    <section id="about" className="section about">
       <div className="container">
-        <SectionHead index="01" eyebrow="About" title="Who you would be hiring" />
+        <p className="eyebrow" data-reveal>
+          <span>01</span> About
+        </p>
+
+        <p className="statement" data-words>
+          <SplitWords text={ABOUT.statement} />
+        </p>
 
         <div className="about__grid">
-          <Reveal className="about__body">
-            <p className="about__lead">{ABOUT.lead}</p>
-            {ABOUT.body.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-            ))}
-
-            <div className="about__meta">
-              {LANGUAGES.map((language) => (
-                <span className="chip" key={language.name}>
-                  <Icon name="globe" size={13} />
-                  {language.name} — {language.level}
-                </span>
-              ))}
+          <figure className="holo" ref={photo} data-reveal="tilt" data-cursor="Hi">
+            <div className="holo__frame">
+              <img
+                src={`${BASE}${PROFILE.photo}`}
+                alt={`Portrait of ${PROFILE.fullName}`}
+                width="640"
+                height="640"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="holo__shine" aria-hidden="true" />
+              <span className="holo__scan" aria-hidden="true" />
             </div>
-          </Reveal>
+            <figcaption>
+              <span>{PROFILE.fullName}</span>
+              <span>{PROFILE.location}</span>
+            </figcaption>
+          </figure>
 
-          <div className="hl-grid">
-            {ABOUT.highlights.map((item, i) => (
-              <Reveal className="card card--hover hl" key={item.title} delay={80 * i}>
-                <span className="hl__icon">
-                  <Icon name={item.icon} size={18} />
-                </span>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </Reveal>
+          <div className="about__text">
+            {ABOUT.body.map((p) => (
+              <p key={p.slice(0, 24)} data-reveal>
+                {p}
+              </p>
             ))}
+            <ul className="about__facts" data-reveal>
+              {ABOUT.highlights.map((h) => (
+                <li key={h.title} className="fact">
+                  <Icon name={h.icon} size={20} />
+                  <div>
+                    <h3>{h.title}</h3>
+                    <p>{h.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-
-        <div className="services">
-          {SERVICES.map((service, i) => (
-            <Reveal className="service" key={service.title} delay={80 * i}>
-              <p className="service__no">0{i + 1} / What I do</p>
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>

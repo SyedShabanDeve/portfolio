@@ -1,90 +1,69 @@
-import { CERTIFICATIONS, EDUCATION, EXPERIENCE } from "../data/site";
-import Icon from "./ui/Icon";
-import Reveal from "./ui/Reveal";
-import SectionHead from "./ui/SectionHead";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { EXPERIENCE } from "../data/site";
+import { prefersReducedMotion } from "../hooks/motion";
 
 export default function Experience() {
+  const root = useRef(null);
+
+  useEffect(() => {
+    if (prefersReducedMotion()) return undefined;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".timeline__progress",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: { trigger: ".timeline", start: "top 70%", end: "bottom 60%", scrub: true },
+        }
+      );
+    }, root);
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="experience" className="section">
+    <section id="experience" className="section experience" ref={root}>
       <div className="container">
-        <SectionHead
-          index="03"
-          eyebrow="Experience"
-          title="Where I have worked"
-          lede="Three years across a full-time role, a frontend internship and freelance delivery that has never stopped."
-        />
+        <p className="eyebrow" data-reveal>
+          <span>03</span> Experience
+        </p>
+        <h2 className="title" data-reveal>
+          Where the work <em>happens</em>
+        </h2>
 
-        <div className="timeline">
-          {EXPERIENCE.map((job, i) => (
-            <Reveal
-              className={`tl-item${job.current ? " is-current" : ""}`}
-              key={`${job.company}-${job.role}`}
-              delay={70 * i}
-            >
-              <div className="card tl-card">
-                <div className="tl-head">
-                  <span className="tl-period">{job.period}</span>
-                  <span className="tl-type">{job.type}</span>
-                </div>
-
-                <h3 className="tl-role">{job.role}</h3>
-                <p className="tl-company">
-                  {job.company} <em>· {job.location}</em>
-                </p>
-
-                <ul className="tl-list">
-                  {job.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
+        <ol className="timeline">
+          <span className="timeline__line" aria-hidden="true">
+            <span className="timeline__progress" />
+          </span>
+          {EXPERIENCE.map((job) => (
+            <li key={job.role + job.period} className="job" data-reveal="tilt">
+              <span className={`job__node${job.current ? " is-current" : ""}`} aria-hidden="true" />
+              <div className="job__meta">
+                <span className="job__period">{job.period}</span>
+                <span className="job__type">{job.type}</span>
+              </div>
+              <div className="job__card glass">
+                <h3>
+                  {job.role} <span>@ {job.company}</span>
+                </h3>
+                <p className="job__where">{job.location}</p>
+                <ul className="job__bullets">
+                  {job.bullets.map((b) => (
+                    <li key={b.slice(0, 30)}>{b}</li>
                   ))}
                 </ul>
-
-                <div className="tl-stack">
-                  {job.stack.map((tech) => (
-                    <span className="chip" key={tech}>
-                      {tech}
-                    </span>
+                <ul className="chips chips--sm">
+                  {job.stack.map((s) => (
+                    <li key={s} className="chip">
+                      {s}
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-            </Reveal>
+            </li>
           ))}
-        </div>
-
-        <div className="edu-grid">
-          <Reveal className="card edu-card edu-card--accent">
-            <span className="eyebrow">
-              <Icon name="cap" size={14} />
-              Education
-            </span>
-            <h3>
-              {EDUCATION.degree} — {EDUCATION.school}
-            </h3>
-            <p>
-              {EDUCATION.location} · {EDUCATION.period}
-              <br />
-              {EDUCATION.detail} · CGPA <strong>{EDUCATION.grade}</strong>
-            </p>
-          </Reveal>
-
-          <Reveal className="card edu-card" delay={80}>
-            <span className="eyebrow">
-              <Icon name="award" size={14} />
-              Certification
-            </span>
-            <ul className="edu-list">
-              {CERTIFICATIONS.map((cert) => (
-                <li key={cert.name}>
-                  <span>
-                    {cert.name}
-                    <br />
-                    <em style={{ color: "var(--text-3)", fontStyle: "normal" }}>{cert.issuer}</em>
-                  </span>
-                  <span>{cert.year}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
+        </ol>
       </div>
     </section>
   );
