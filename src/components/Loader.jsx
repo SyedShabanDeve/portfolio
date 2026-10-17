@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { prefersReducedMotion } from "../hooks/motion";
+import Logo from "./ui/Logo";
 
 const DURATION = 1900;
 const ease = (t) => 1 - Math.pow(1 - t, 3);
 
 /**
- * Boot screen: a counter while a CSS hypercube unfolds, then it wipes away.
+ * Boot screen: the logo draws itself while a counter runs, then it wipes away.
  * Skipped entirely for reduced motion, and capped so it can never hang.
  */
 export default function Loader({ onDone }) {
@@ -47,17 +48,9 @@ export default function Loader({ onDone }) {
 
   return (
     <div className={`loader${phase === "leaving" ? " is-leaving" : ""}`} role="status" aria-label="Loading">
-      <div className="loader__cube" aria-hidden="true">
-        <div className="cube cube--outer">
-          {["f", "b", "l", "r", "t", "d"].map((f) => (
-            <span key={f} className={`cube__face cube__face--${f}`} />
-          ))}
-        </div>
-        <div className="cube cube--inner">
-          {["f", "b", "l", "r", "t", "d"].map((f) => (
-            <span key={f} className={`cube__face cube__face--${f}`} />
-          ))}
-        </div>
+      <div className="loader__mark" aria-hidden="true">
+        <Logo size={150} />
+        <span className="loader__ring" />
       </div>
       <p className="loader__label">
         <span>Entering the fourth dimension</span>

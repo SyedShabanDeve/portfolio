@@ -33,7 +33,8 @@ export const NAV = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
-  { id: "work", label: "Work" },
+  { id: "websites", label: "Websites" },
+  { id: "work", label: "Projects" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -163,17 +164,66 @@ export const LANGUAGES = [
   { name: "English", level: "Professional working proficiency" },
 ];
 
-export const FILTERS = [
-  { id: "all", label: "All" },
-  { id: "react", label: "React" },
-  { id: "client", label: "Client sites" },
-  { id: "oss", label: "Open source" },
+/**
+ * Live client websites (.com). Each has a real screenshot in public/shots;
+ * `tall` screenshots scroll inside the browser frame on hover.
+ * Client sites list what the site is, not the backend behind it.
+ */
+export const SITES = [
+  {
+    id: "times",
+    name: "The Times of New York",
+    domain: "thetimesofnewyork.com",
+    url: "https://thetimesofnewyork.com",
+    kind: "News & publishing",
+    year: "2025",
+    summary:
+      "News and publishing site with sections for business, technology, health, travel, real estate and more, an article workflow and an admin dashboard for the editorial team.",
+    tags: ["React", "Admin dashboard", "Editorial roles"],
+    image: "shots/times.webp",
+    tall: true,
+  },
+  {
+    id: "sani-wp",
+    name: "Sani IT Consultant",
+    domain: "saniitconsultant.com",
+    url: "https://saniitconsultant.com",
+    kind: "Agency website",
+    year: "2023",
+    summary:
+      "Website for a Dubai digital marketing agency: service pages, lead capture forms and on-page SEO, maintained after launch.",
+    tags: ["WordPress", "Elementor", "SEO"],
+    image: "shots/saniwp.webp",
+    tall: true,
+  },
+  {
+    id: "usd",
+    name: "United States of Dollars",
+    domain: "unitedstatesofdollars.com",
+    url: "https://unitedstatesofdollars.com",
+    kind: "Finance website",
+    year: "2024",
+    summary:
+      "Site for an investment firm: business deals, certification and FAQ pages, with a live currency ticker across the top.",
+    tags: ["Client work", "Live ticker", "Responsive"],
+    image: "shots/usd.webp",
+  },
+  {
+    id: "uforuae",
+    name: "UFO UAE",
+    domain: "uforuae.com",
+    url: "https://uforuae.com",
+    kind: "Business directory",
+    year: "2026",
+    summary:
+      "Business directory and listings portal for UAE clients, with business listings, memberships, and search by category and location. Currently being relaunched.",
+    tags: ["Listings", "Memberships", "Search"],
+    hue: 200,
+  },
 ];
 
 /**
- * `repo` present  -> source is public on GitHub.
- * `repo` absent   -> client work, the repository stays with the client.
- * Client sites list what the site is, not the backend behind it.
+ * Products and open-source work. `repo` present means the code is public.
  */
 export const PROJECTS = [
   {
@@ -181,85 +231,49 @@ export const PROJECTS = [
     name: "Nexora",
     kind: "Desktop app · Multi-agent AI",
     year: "2026",
-    categories: ["oss", "react"],
     summary:
       "A desktop workspace for Windows and macOS. Four agents share the machine: they read files, run commands and answer out loud. Bring your own model key.",
     tags: ["Electron", "React", "TypeScript", "Vite"],
     url: "https://syedshabandeve.github.io/nexora/",
     repo: "https://github.com/SyedShabanDeve/nexora",
+    image: "shots/nexora.webp",
     hue: 265,
-  },
-  {
-    id: "times",
-    name: "The Times of New York",
-    kind: "News & publishing",
-    year: "2025",
-    categories: ["client", "react"],
-    summary:
-      "News and publishing site with category sections, an article workflow and an admin dashboard for the editorial team.",
-    tags: ["React", "Admin dashboard", "Editorial roles"],
-    url: "https://thetimesofnewyork.com",
-    hue: 350,
   },
   {
     id: "catchy",
     name: "Catchy Storefront",
     kind: "E-commerce storefront",
     year: "2026",
-    categories: ["oss", "react"],
     summary:
       "React 19 storefront with a variant-aware persistent cart, nested category routing, a checkout flow and a small admin panel for homepage content.",
     tags: ["React 19", "React Router", "Context API", "Tailwind"],
     url: "https://syedshabandeve.github.io/catchy-storefront/",
     repo: "https://github.com/SyedShabanDeve/catchy-storefront",
+    image: "shots/catchy.webp",
     hue: 40,
-  },
-  {
-    id: "uforuae",
-    name: "UFO UAE",
-    kind: "Business directory",
-    year: "2026",
-    categories: ["client"],
-    summary:
-      "Business directory and listings portal for UAE clients, with business listings, memberships, and search by category and location.",
-    tags: ["Listings", "Memberships", "Search"],
-    url: "https://uforuae.com",
-    hue: 200,
   },
   {
     id: "sani-react",
     name: "Sani Corporate Website",
     kind: "Corporate site",
     year: "2026",
-    categories: ["oss", "react"],
     summary:
       "Seven-page corporate site in React 19. Every inner page is lazy-loaded into its own chunk, with hash-aware scroll restoration and a Netlify SPA config.",
     tags: ["React 19", "Code splitting", "Netlify"],
     repo: "https://github.com/SyedShabanDeve/sani-corporate-website",
+    image: "shots/sani-react.webp",
     hue: 215,
-  },
-  {
-    id: "sani-wp",
-    name: "Sani IT Consultant",
-    kind: "Agency website",
-    year: "2023",
-    categories: ["client"],
-    summary:
-      "Website for a Dubai marketing agency: service pages, lead capture forms and on-page SEO, maintained after launch.",
-    tags: ["WordPress", "Elementor", "SEO"],
-    url: "https://saniitconsultant.com",
-    hue: 280,
   },
   {
     id: "directory",
     name: "Directory Landing Redesign",
     kind: "Landing page",
     year: "2026",
-    categories: ["oss", "react"],
     summary:
       "Landing page redesign for a business directory: a composite search bar, staggered motion on scroll and a mobile-first layout.",
     tags: ["React", "Framer Motion", "Tailwind"],
     repo: "https://github.com/SyedShabanDeve/directory-landing-redesign",
+    image: "shots/directory.webp",
     hue: 160,
   },
   {
@@ -267,23 +281,25 @@ export const PROJECTS = [
     name: "FOLD&CARRY",
     kind: "Static storefront",
     year: "2026",
-    categories: ["oss"],
     summary:
       "Storefront for a slim-wallet brand, with WhatsApp ordering and cash on delivery across Pakistan.",
     tags: ["JavaScript", "HTML", "CSS"],
     repo: "https://github.com/SyedShabanDeve/foldandcarry",
+    image: "shots/foldandcarry.webp",
     hue: 25,
   },
   {
-    id: "usd",
-    name: "United States of Dollars",
-    kind: "Client website",
-    year: "2024",
-    categories: ["client"],
-    summary: "Website delivered from first build through to client handover.",
-    tags: ["Client work", "Handover"],
-    url: "https://unitedstatesofdollars.com",
-    hue: 140,
+    id: "portfolio",
+    name: "This portfolio",
+    kind: "WebGL · 4D scene",
+    year: "2026",
+    summary:
+      "A tesseract rotating through four dimensions and projected into 3D every frame, with GSAP scroll choreography and four colour themes.",
+    tags: ["React 19", "three.js", "GSAP", "GLSL"],
+    url: "https://syedshabandeve.github.io/portfolio/",
+    repo: "https://github.com/SyedShabanDeve/portfolio",
+    image: "shots/portfolio.webp",
+    hue: 280,
   },
 ];
 

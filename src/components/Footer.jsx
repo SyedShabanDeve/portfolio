@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { PROFILE } from "../data/site";
 import Icon from "./ui/Icon";
+import Logo from "./ui/Logo";
 
 const lahoreTime = () =>
   new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Karachi", hour: "2-digit", minute: "2-digit" }).format(new Date());
@@ -20,8 +21,8 @@ export default function Footer() {
           SHABAN
         </p>
         <div className="footer__row">
-          <p>
-            © {new Date().getFullYear()} {PROFILE.fullName}
+          <p className="footer__brand">
+            <Logo size={28} /> © {new Date().getFullYear()} {PROFILE.fullName}
           </p>
           <p>
             Lahore · <span className="footer__time">{time}</span> PKT

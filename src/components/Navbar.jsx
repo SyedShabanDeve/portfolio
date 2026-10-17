@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { NAV, PROFILE, THEMES } from "../data/site";
 import Icon from "./ui/Icon";
+import Logo from "./ui/Logo";
 
 const BASE = import.meta.env.BASE_URL;
 
@@ -59,14 +60,11 @@ export default function Navbar({ active, theme, onTheme }) {
     <header className={`nav${stuck ? " is-stuck" : ""}${hidden && !open ? " is-hidden" : ""}`}>
       <div className="nav__inner">
         <a className="nav__logo" href="#home" aria-label={`${PROFILE.fullName}, back to top`} data-cursor="Top">
-          <span className="nav__mark" aria-hidden="true">
-            <svg viewBox="0 0 40 40" width="34" height="34">
-              <rect x="6" y="6" width="20" height="20" />
-              <rect x="14" y="14" width="20" height="20" />
-              <path d="M6 6l8 8M26 6l8 8M6 26l8 8M26 26l8 8" />
-            </svg>
+          <Logo size={40} className="nav__mark" />
+          <span className="nav__word">
+            <span className="nav__name">Syed Shaban Ahmad</span>
+            <span className="nav__role">Full Stack Developer</span>
           </span>
-          <span className="nav__name">Shaban</span>
         </a>
 
         <nav className="nav__links" aria-label="Primary">

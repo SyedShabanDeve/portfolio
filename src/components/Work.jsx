@@ -4,6 +4,8 @@ import { PROJECTS, PROFILE } from "../data/site";
 import Icon from "./ui/Icon";
 import { useTilt } from "../hooks/useTilt";
 
+const BASE = import.meta.env.BASE_URL;
+
 function initials(name) {
   return name
     .replace(/[^A-Za-z& ]/g, "")
@@ -21,10 +23,24 @@ function ProjectCard({ project, index }) {
   return (
     <article className="card" style={{ "--h": project.hue }}>
       <div className="card__inner" ref={tilt}>
-        <a className="card__art" href={primary} target="_blank" rel="noreferrer" data-cursor="Open" tabIndex={-1} aria-hidden="true">
-          <span className="card__glyph">{initials(project.name)}</span>
-          <span className="card__orb" />
-          <span className="card__grid" />
+        <a
+          className={`card__art${project.image ? " has-shot" : ""}`}
+          href={primary}
+          target="_blank"
+          rel="noreferrer"
+          data-cursor="Open"
+          tabIndex={-1}
+          aria-hidden="true"
+        >
+          {project.image ? (
+            <img src={`${BASE}${project.image}`} alt="" loading="lazy" decoding="async" width="800" height="500" />
+          ) : (
+            <>
+              <span className="card__glyph">{initials(project.name)}</span>
+              <span className="card__orb" />
+              <span className="card__grid" />
+            </>
+          )}
           <span className="card__index">{String(index + 1).padStart(2, "0")}</span>
         </a>
         <div className="card__body">
@@ -43,7 +59,7 @@ function ProjectCard({ project, index }) {
           <div className="card__links">
             {project.url && (
               <a href={project.url} target="_blank" rel="noreferrer" data-cursor="Live">
-                Live site <Icon name="external" size={14} />
+                Live demo <Icon name="external" size={14} />
                 <span className="sr-only"> for {project.name} (opens in a new tab)</span>
               </a>
             )}
@@ -109,14 +125,14 @@ export default function Work() {
       <div className="work__head container">
         <div>
           <p className="eyebrow">
-            <span>04</span> Selected work
+            <span>05</span> Projects
           </p>
           <h2 className="title">
-            Things I have <em>shipped</em>
+            Products and <em>open source</em>
           </h2>
         </div>
         <p className="work__hint">
-          Live client sites and open-source repos. More on{" "}
+          Things I built on my own time, with the code public. More on{" "}
           <a href={PROFILE.github} target="_blank" rel="noreferrer">
             GitHub
           </a>

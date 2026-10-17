@@ -6,7 +6,7 @@ export default function Education() {
     <section id="education" className="section education">
       <div className="container">
         <p className="eyebrow" data-reveal>
-          <span>05</span> Education
+          <span>06</span> Education
         </p>
         <div className="edu__grid">
           {EDUCATION.map((e) => (

@@ -12,6 +12,8 @@ import Loader from "./components/Loader";
 import Marquee from "./components/Marquee";
 import Navbar from "./components/Navbar";
 import SceneCanvas from "./components/SceneCanvas";
+import SideRail from "./components/SideRail";
+import Sites from "./components/Sites";
 import Skills from "./components/Skills";
 import Work from "./components/Work";
 import { NAV } from "./data/site";
@@ -97,6 +99,7 @@ export default function App() {
       <span className="progress" aria-hidden="true" />
 
       <Navbar active={active} theme={theme} onTheme={setTheme} />
+      <SideRail />
 
       <main id="main">
         <Hero ready={ready} />
@@ -104,6 +107,7 @@ export default function App() {
         <About />
         <Skills />
         <Experience />
+        <Sites />
         <Work />
         <Education />
         <Contact />
