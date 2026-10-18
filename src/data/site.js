@@ -33,8 +33,8 @@ export const NAV = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
-  { id: "websites", label: "Websites" },
-  { id: "work", label: "Projects" },
+  { id: "work", label: "Work" },
+  { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -165,20 +165,20 @@ export const LANGUAGES = [
 ];
 
 /**
- * Live client websites (.com). Each has a real screenshot in public/shots;
- * `tall` screenshots scroll inside the browser frame on hover.
+ * Everything in the Work gallery: live client websites first, then my own
+ * products. Clicking a card opens the live site; `repo` adds a Code link.
+ * `tall` screenshots scroll through the page while hovered.
  * Client sites list what the site is, not the backend behind it.
  */
-export const SITES = [
+export const WORK = [
   {
     id: "times",
     name: "The Times of New York",
     domain: "thetimesofnewyork.com",
     url: "https://thetimesofnewyork.com",
-    kind: "News & publishing",
+    kind: "Client · News & publishing",
     year: "2025",
-    summary:
-      "News and publishing site with sections for business, technology, health, travel, real estate and more, an article workflow and an admin dashboard for the editorial team.",
+    summary: "News and publishing site with category sections, an article workflow and an admin dashboard for the editorial team.",
     tags: ["React", "Admin dashboard", "Editorial roles"],
     image: "shots/times.webp",
     tall: true,
@@ -188,10 +188,9 @@ export const SITES = [
     name: "Sani IT Consultant",
     domain: "saniitconsultant.com",
     url: "https://saniitconsultant.com",
-    kind: "Agency website",
+    kind: "Client · Agency website",
     year: "2023",
-    summary:
-      "Website for a Dubai digital marketing agency: service pages, lead capture forms and on-page SEO, maintained after launch.",
+    summary: "Website for a Dubai digital marketing agency: service pages, lead capture forms and on-page SEO, maintained after launch.",
     tags: ["WordPress", "Elementor", "SEO"],
     image: "shots/saniwp.webp",
     tall: true,
@@ -201,106 +200,93 @@ export const SITES = [
     name: "United States of Dollars",
     domain: "unitedstatesofdollars.com",
     url: "https://unitedstatesofdollars.com",
-    kind: "Finance website",
+    kind: "Client · Finance website",
     year: "2024",
-    summary:
-      "Site for an investment firm: business deals, certification and FAQ pages, with a live currency ticker across the top.",
+    summary: "Site for an investment firm: business deals, certification and FAQ pages, with a live currency ticker across the top.",
     tags: ["Client work", "Live ticker", "Responsive"],
     image: "shots/usd.webp",
+  },
+  {
+    id: "styleandcarry",
+    name: "Style & Carry",
+    domain: "styleandcarry.netlify.app",
+    url: "https://styleandcarry.netlify.app/",
+    repo: "https://github.com/SyedShabanDeve/foldandcarry",
+    kind: "E-commerce store",
+    year: "2026",
+    summary: "Online store for wallets, watches and bags in Pakistan: category browsing, search, order tracking, wishlist and cart, with cash on delivery.",
+    tags: ["JavaScript", "E-commerce", "Netlify"],
+    image: "shots/styleandcarry.webp",
+  },
+  {
+    id: "nexora",
+    name: "Nexora",
+    domain: "syedshabandeve.github.io/nexora",
+    url: "https://syedshabandeve.github.io/nexora/",
+    repo: "https://github.com/SyedShabanDeve/nexora",
+    kind: "Desktop app · Multi-agent AI",
+    year: "2026",
+    summary: "A desktop workspace for Windows and macOS. Four agents share the machine: they read files, run commands and answer out loud.",
+    tags: ["Electron", "React", "TypeScript"],
+    image: "shots/nexora.webp",
+  },
+  {
+    id: "catchy",
+    name: "Catchy Storefront",
+    domain: "syedshabandeve.github.io/catchy-storefront",
+    url: "https://syedshabandeve.github.io/catchy-storefront/",
+    repo: "https://github.com/SyedShabanDeve/catchy-storefront",
+    kind: "E-commerce storefront",
+    year: "2026",
+    summary: "React 19 storefront with a variant-aware persistent cart, nested category routing, a checkout flow and a homepage admin panel.",
+    tags: ["React 19", "React Router", "Tailwind"],
+    image: "shots/catchy.webp",
+  },
+  {
+    id: "sani-react",
+    name: "Sani Corporate Website",
+    domain: "saniitconsultant.netlify.app",
+    url: "https://saniitconsultant.netlify.app/",
+    repo: "https://github.com/SyedShabanDeve/sani-corporate-website",
+    kind: "Corporate site · React rebuild",
+    year: "2026",
+    summary: "Multi-page corporate site in React 19. Every inner page is lazy-loaded into its own chunk, with hash-aware scroll restoration.",
+    tags: ["React 19", "Code splitting", "Netlify"],
+    image: "shots/sani-react.webp",
+  },
+  {
+    id: "directory",
+    name: "Directory Landing Redesign",
+    domain: "github.com/SyedShabanDeve",
+    repo: "https://github.com/SyedShabanDeve/directory-landing-redesign",
+    kind: "Landing page",
+    year: "2026",
+    summary: "Landing page redesign for a business directory: a composite search bar, staggered motion on scroll and a mobile-first layout.",
+    tags: ["React", "Framer Motion", "Tailwind"],
+    image: "shots/directory.webp",
   },
   {
     id: "uforuae",
     name: "UFO UAE",
     domain: "uforuae.com",
     url: "https://uforuae.com",
-    kind: "Business directory",
+    kind: "Client · Business directory",
     year: "2026",
-    summary:
-      "Business directory and listings portal for UAE clients, with business listings, memberships, and search by category and location. Currently being relaunched.",
+    summary: "Business directory and listings portal for UAE clients, with listings, memberships, and search by category and location. Being relaunched.",
     tags: ["Listings", "Memberships", "Search"],
     hue: 200,
-  },
-];
-
-/**
- * Products and open-source work. `repo` present means the code is public.
- */
-export const PROJECTS = [
-  {
-    id: "nexora",
-    name: "Nexora",
-    kind: "Desktop app · Multi-agent AI",
-    year: "2026",
-    summary:
-      "A desktop workspace for Windows and macOS. Four agents share the machine: they read files, run commands and answer out loud. Bring your own model key.",
-    tags: ["Electron", "React", "TypeScript", "Vite"],
-    url: "https://syedshabandeve.github.io/nexora/",
-    repo: "https://github.com/SyedShabanDeve/nexora",
-    image: "shots/nexora.webp",
-    hue: 265,
-  },
-  {
-    id: "catchy",
-    name: "Catchy Storefront",
-    kind: "E-commerce storefront",
-    year: "2026",
-    summary:
-      "React 19 storefront with a variant-aware persistent cart, nested category routing, a checkout flow and a small admin panel for homepage content.",
-    tags: ["React 19", "React Router", "Context API", "Tailwind"],
-    url: "https://syedshabandeve.github.io/catchy-storefront/",
-    repo: "https://github.com/SyedShabanDeve/catchy-storefront",
-    image: "shots/catchy.webp",
-    hue: 40,
-  },
-  {
-    id: "sani-react",
-    name: "Sani Corporate Website",
-    kind: "Corporate site",
-    year: "2026",
-    summary:
-      "Seven-page corporate site in React 19. Every inner page is lazy-loaded into its own chunk, with hash-aware scroll restoration and a Netlify SPA config.",
-    tags: ["React 19", "Code splitting", "Netlify"],
-    repo: "https://github.com/SyedShabanDeve/sani-corporate-website",
-    image: "shots/sani-react.webp",
-    hue: 215,
-  },
-  {
-    id: "directory",
-    name: "Directory Landing Redesign",
-    kind: "Landing page",
-    year: "2026",
-    summary:
-      "Landing page redesign for a business directory: a composite search bar, staggered motion on scroll and a mobile-first layout.",
-    tags: ["React", "Framer Motion", "Tailwind"],
-    repo: "https://github.com/SyedShabanDeve/directory-landing-redesign",
-    image: "shots/directory.webp",
-    hue: 160,
-  },
-  {
-    id: "styleandcarry",
-    name: "Style & Carry",
-    kind: "E-commerce store",
-    year: "2026",
-    summary:
-      "Online store for wallets, watches and bags in Pakistan: category browsing, search, order tracking, a wishlist and cart, with cash on delivery and WhatsApp ordering.",
-    tags: ["JavaScript", "E-commerce", "Netlify"],
-    url: "https://styleandcarry.netlify.app/",
-    repo: "https://github.com/SyedShabanDeve/foldandcarry",
-    image: "shots/styleandcarry.webp",
-    hue: 25,
   },
   {
     id: "portfolio",
     name: "This portfolio",
-    kind: "WebGL · 4D scene",
-    year: "2026",
-    summary:
-      "A tesseract rotating through four dimensions and projected into 3D every frame, with GSAP scroll choreography and four colour themes.",
-    tags: ["React 19", "three.js", "GSAP", "GLSL"],
+    domain: "syedshabandeve.github.io/portfolio",
     url: "https://syedshabandeve.github.io/portfolio/",
     repo: "https://github.com/SyedShabanDeve/portfolio",
+    kind: "WebGL · 4D scene",
+    year: "2026",
+    summary: "A tesseract rotating through four dimensions and projected into 3D every frame, with GSAP scroll choreography and four themes.",
+    tags: ["React 19", "three.js", "GSAP"],
     image: "shots/portfolio.webp",
-    hue: 280,
   },
 ];
 

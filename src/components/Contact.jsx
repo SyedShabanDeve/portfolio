@@ -30,7 +30,7 @@ export default function Contact() {
     <section id="contact" className="section contact">
       <div className="container">
         <p className="eyebrow" data-reveal>
-          <span>07</span> Contact
+          <span>06</span> Contact
         </p>
         <h2 className="contact__title" data-reveal>
           <SplitChars text="Let's build" />

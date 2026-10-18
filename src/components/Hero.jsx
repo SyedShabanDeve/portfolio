@@ -82,7 +82,7 @@ export default function Hero({ ready }) {
         </p>
 
         <div className="hero__cta" data-hero>
-          <Magnetic className="btn btn--primary btn--lg" href="#websites" data-cursor="Go">
+          <Magnetic className="btn btn--primary btn--lg" href="#work" data-cursor="Go">
             See the work <Icon name="arrowRight" size={16} />
           </Magnetic>
           <Magnetic className="btn btn--ghost btn--lg" href={`${BASE}${PROFILE.resume}`} download data-cursor="PDF">

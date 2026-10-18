@@ -1,81 +1,85 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
-import { PROJECTS, PROFILE } from "../data/site";
-import Icon from "./ui/Icon";
+import { PROFILE, WORK } from "../data/site";
 import { useTilt } from "../hooks/useTilt";
+import Icon from "./ui/Icon";
 
 const BASE = import.meta.env.BASE_URL;
+const PER_PAGE = 4;
 
-function initials(name) {
-  return name
-    .replace(/[^A-Za-z& ]/g, "")
-    .split(" ")
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("");
-}
-
-function ProjectCard({ project, index }) {
-  const tilt = useTilt(12);
-  const primary = project.url || project.repo;
+/** One site or project in a browser frame. The frame opens the live site. */
+function WorkCard({ item, index }) {
+  const tilt = useTilt(8);
+  const primary = item.url || item.repo;
 
   return (
-    <article className="card" style={{ "--h": project.hue }}>
-      <div className="card__inner" ref={tilt}>
-        <a
-          className={`card__art${project.image ? " has-shot" : ""}`}
-          href={primary}
-          target="_blank"
-          rel="noreferrer"
-          data-cursor="Open"
-          tabIndex={-1}
-          aria-hidden="true"
-        >
-          {project.image ? (
-            <img src={`${BASE}${project.image}`} alt="" loading="lazy" decoding="async" width="800" height="500" />
+    <article className="wcard" style={{ "--h": item.hue ?? 230 }}>
+      <a
+        className={`site__frame wcard__frame${item.tall ? " is-tall" : ""}`}
+        href={primary}
+        target="_blank"
+        rel="noreferrer"
+        ref={tilt}
+        data-cursor={item.url ? "Visit" : "Code"}
+        aria-label={`Open ${item.name}${item.url ? "" : " on GitHub"} in a new tab`}
+      >
+        <span className="site__bar" aria-hidden="true">
+          <span className="site__dots">
+            <i />
+            <i />
+            <i />
+          </span>
+          <span className="site__url">
+            <svg viewBox="0 0 24 24" width="10" height="10" aria-hidden="true">
+              <path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5z" fill="none" stroke="currentColor" strokeWidth="2" />
+            </svg>
+            {item.domain}
+          </span>
+        </span>
+        <span className="site__screen">
+          {item.image ? (
+            <img src={`${BASE}${item.image}`} alt={`Screenshot of ${item.name}`} decoding="async" fetchPriority="low" width="800" />
           ) : (
-            <>
-              <span className="card__glyph">{initials(project.name)}</span>
-              <span className="card__orb" />
-              <span className="card__grid" />
-            </>
+            <span className="site__art" aria-hidden="true">
+              <span className="site__art-name">{item.name}</span>
+              <span className="site__art-tag">Relaunching soon</span>
+            </span>
           )}
-          <span className="card__index">{String(index + 1).padStart(2, "0")}</span>
-        </a>
-        <div className="card__body">
-          <p className="card__kind">
-            {project.kind} <span>· {project.year}</span>
-          </p>
-          <h3 className="card__name">
-            <a href={primary} target="_blank" rel="noreferrer" data-cursor={project.url ? "Live" : "Code"}>
-              {project.name}
+        </span>
+        <span className="site__glare" aria-hidden="true" />
+      </a>
+
+      <div className="wcard__body">
+        <p className="wcard__kind">
+          <span>{String(index + 1).padStart(2, "0")}</span> {item.kind} · {item.year}
+        </p>
+        <h3 className="wcard__name">
+          <a href={primary} target="_blank" rel="noreferrer" data-cursor={item.url ? "Visit" : "Code"}>
+            {item.name}
+          </a>
+        </h3>
+        <p className="wcard__summary">{item.summary}</p>
+        <ul className="chips chips--sm">
+          {item.tags.map((t) => (
+            <li key={t} className="chip">
+              {t}
+            </li>
+          ))}
+        </ul>
+        <div className="wcard__links">
+          {item.url && (
+            <a href={item.url} target="_blank" rel="noreferrer" data-cursor="Visit">
+              Live site <Icon name="external" size={13} />
+              <span className="sr-only"> for {item.name} (opens in a new tab)</span>
             </a>
-          </h3>
-          <p className="card__summary">{project.summary}</p>
-          <ul className="chips chips--sm">
-            {project.tags.map((t) => (
-              <li key={t} className="chip">
-                {t}
-              </li>
-            ))}
-          </ul>
-          <div className="card__links">
-            {project.url && (
-              <a href={project.url} target="_blank" rel="noreferrer" data-cursor="Live">
-                Live demo <Icon name="external" size={14} />
-                <span className="sr-only"> for {project.name} (opens in a new tab)</span>
-              </a>
-            )}
-            {project.repo && (
-              <a href={project.repo} target="_blank" rel="noreferrer" data-cursor="Code">
-                <Icon name="github" size={14} /> Code
-                <span className="sr-only"> for {project.name} on GitHub (opens in a new tab)</span>
-              </a>
-            )}
-          </div>
+          )}
+          {item.repo && (
+            <a href={item.repo} target="_blank" rel="noreferrer" data-cursor="Code">
+              <Icon name="github" size={13} /> Code
+              <span className="sr-only"> for {item.name} on GitHub (opens in a new tab)</span>
+            </a>
+          )}
         </div>
-        <span className="card__shine" aria-hidden="true" />
       </div>
     </article>
   );
@@ -84,78 +88,113 @@ function ProjectCard({ project, index }) {
 export default function Work() {
   const section = useRef(null);
   const track = useRef(null);
+  const pageRef = useRef(0);
+  const [page, setPage] = useState(0);
+  const pages = Math.ceil(WORK.length / PER_PAGE);
 
   useEffect(() => {
     const mm = gsap.matchMedia();
     mm.add("(min-width: 900px) and (prefers-reduced-motion: no-preference)", () => {
-      const distance = () => track.current.scrollWidth - window.innerWidth;
+      const cards = gsap.utils.toArray(".wcard", track.current);
+      const distance = () => Math.max(0, track.current.scrollWidth - window.innerWidth);
+      // progress values where each group of four starts, so the row snaps 4 by 4
+      const stops = () => {
+        const d = distance() || 1;
+        const pts = [];
+        for (let i = 0; i < cards.length; i += PER_PAGE) {
+          pts.push(Math.min(1, (cards[i].offsetLeft - cards[0].offsetLeft) / d));
+        }
+        if (pts[pts.length - 1] < 1) pts.push(1);
+        return pts;
+      };
+
       const scroll = gsap.to(track.current, {
         x: () => -distance(),
         ease: "none",
         scrollTrigger: {
           trigger: section.current,
           start: "top top",
-          end: () => `+=${distance()}`,
+          end: () => `+=${distance() * 1.2}`,
           pin: true,
-          scrub: 1,
+          scrub: 0.8,
           invalidateOnRefresh: true,
           anticipatePin: 1,
+          snap: {
+            snapTo: (value) => {
+              const pts = stops();
+              return pts.reduce((best, p) => (Math.abs(p - value) < Math.abs(best - value) ? p : best), pts[0]);
+            },
+            duration: { min: 0.35, max: 0.9 },
+            ease: "power3.inOut",
+            delay: 0.08,
+          },
+          onUpdate: (self) => {
+            const pts = stops();
+            let idx = 0;
+            pts.forEach((p, i) => {
+              if (self.progress >= p - 0.02) idx = i;
+            });
+            idx = Math.min(idx, pages - 1);
+            if (idx !== pageRef.current) {
+              pageRef.current = idx;
+              setPage(idx);
+            }
+          },
         },
       });
-      gsap.utils.toArray(".card", track.current).forEach((card) => {
+
+      cards.forEach((card) => {
         gsap.fromTo(
           card,
-          { rotateY: -32, z: -160, opacity: 0.35 },
+          { rotateY: -38, z: -220, opacity: 0.25 },
           {
             rotateY: 0,
             z: 0,
             opacity: 1,
             ease: "none",
-            scrollTrigger: { trigger: card, containerAnimation: scroll, start: "left 100%", end: "left 45%", scrub: true },
+            scrollTrigger: { trigger: card, containerAnimation: scroll, start: "left 105%", end: "left 70%", scrub: true },
           }
         );
       });
       gsap.to(".work__bar i", {
         scaleX: 1,
         ease: "none",
-        scrollTrigger: { trigger: section.current, start: "top top", end: () => `+=${distance()}`, scrub: true },
+        scrollTrigger: { trigger: section.current, start: "top top", end: () => `+=${distance() * 1.2}`, scrub: true },
       });
     });
     return () => mm.revert();
-  }, []);
+  }, [pages]);
 
   return (
     <section id="work" className="work" ref={section}>
       <div className="work__head container">
         <div>
           <p className="eyebrow">
-            <span>05</span> Projects
+            <span>04</span> Work
           </p>
           <h2 className="title">
-            Products and <em>open source</em>
+            Live websites and <em>projects</em>
           </h2>
         </div>
-        <p className="work__hint">
-          Things I built on my own time, with the code public. More on{" "}
-          <a href={PROFILE.github} target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-          .
-        </p>
+        <div className="work__side">
+          <p className="work__hint">
+            Client sites and my own products, all live. Click a frame to open the site. More code on{" "}
+            <a href={PROFILE.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            .
+          </p>
+          <p className="work__pager" aria-hidden="true">
+            <b>{String(page + 1).padStart(2, "0")}</b> / {String(pages).padStart(2, "0")}
+          </p>
+        </div>
       </div>
 
       <div className="work__viewport">
         <div className="work__track" ref={track}>
-          {PROJECTS.map((p, i) => (
-            <ProjectCard key={p.id} project={p} index={i} />
+          {WORK.map((item, i) => (
+            <WorkCard key={item.id} item={item} index={i} />
           ))}
-          <a className="card card--more" href={PROFILE.github} target="_blank" rel="noreferrer" data-cursor="GitHub">
-            <span>All repositories</span>
-            <Icon name="github" size={42} />
-            <span className="card--more__arrow">
-              <Icon name="arrowRight" size={22} />
-            </span>
-          </a>
         </div>
       </div>
       <div className="work__bar container" aria-hidden="true">
