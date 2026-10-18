@@ -1574,6 +1574,9 @@ html.menu-open {
 .card__kind span {
   color: var(--text-3);
 }
+.card__name a:hover {
+  color: var(--hc);
+}
 .card__name {
   font-family: var(--f-display);
   font-size: clamp(1.35rem, 2vw, 1.7rem);

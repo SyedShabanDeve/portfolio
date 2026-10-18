@@ -47,7 +47,11 @@ function ProjectCard({ project, index }) {
           <p className="card__kind">
             {project.kind} <span>· {project.year}</span>
           </p>
-          <h3 className="card__name">{project.name}</h3>
+          <h3 className="card__name">
+            <a href={primary} target="_blank" rel="noreferrer" data-cursor={project.url ? "Live" : "Code"}>
+              {project.name}
+            </a>
+          </h3>
           <p className="card__summary">{project.summary}</p>
           <ul className="chips chips--sm">
             {project.tags.map((t) => (

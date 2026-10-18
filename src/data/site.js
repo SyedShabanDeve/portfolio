@@ -277,15 +277,16 @@ export const PROJECTS = [
     hue: 160,
   },
   {
-    id: "foldandcarry",
-    name: "FOLD&CARRY",
-    kind: "Static storefront",
+    id: "styleandcarry",
+    name: "Style & Carry",
+    kind: "E-commerce store",
     year: "2026",
     summary:
-      "Storefront for a slim-wallet brand, with WhatsApp ordering and cash on delivery across Pakistan.",
-    tags: ["JavaScript", "HTML", "CSS"],
+      "Online store for wallets, watches and bags in Pakistan: category browsing, search, order tracking, a wishlist and cart, with cash on delivery and WhatsApp ordering.",
+    tags: ["JavaScript", "E-commerce", "Netlify"],
+    url: "https://styleandcarry.netlify.app/",
     repo: "https://github.com/SyedShabanDeve/foldandcarry",
-    image: "shots/foldandcarry.webp",
+    image: "shots/styleandcarry.webp",
     hue: 25,
   },
   {
