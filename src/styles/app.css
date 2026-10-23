@@ -1620,6 +1620,259 @@ html.menu-open {
   }
 }
 
+.wcard__new {
+  margin-left: 0.5rem;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  background: var(--grad);
+  color: var(--on-accent);
+  font-weight: 600;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+}
+
+/* ========================================================================== Spotlight */
+
+.spotlight .title {
+  max-width: none;
+}
+.spotlight .title em {
+  white-space: nowrap;
+}
+.spotlight__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.spotlight__stage {
+  position: relative;
+  padding: 0 clamp(2.5rem, 9%, 5.5rem) clamp(3rem, 10%, 6rem) 0;
+  perspective: 1400px;
+}
+/* The whole homepage pans by on its own; hovering pauses it for a closer look. */
+.spotlight__screen {
+  container-type: size;
+}
+/* Two classes deep so it outranks the shared .site__screen img rule further down. */
+.spotlight__frame .spotlight__screen img {
+  height: auto;
+  object-fit: fill;
+  transition: none;
+  animation: spotlight-pan 26s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+.spotlight__frame:hover .spotlight__screen img {
+  animation-play-state: paused;
+}
+@keyframes spotlight-pan {
+  0%,
+  8% {
+    transform: translateY(0);
+  }
+  92%,
+  100% {
+    transform: translateY(calc(-100% + 100cqh));
+  }
+}
+.spotlight__phone {
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+  width: clamp(92px, 18%, 140px);
+  aspect-ratio: 390 / 870;
+  padding: 3.2%;
+  border-radius: 15% / 7%;
+  background: linear-gradient(145deg, #2a2a33, #0c0c10 40%, #1b1b22);
+  box-shadow: 0 34px 70px -28px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  animation: spotlight-float 7s ease-in-out infinite;
+}
+.spotlight__phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  border-top: 9px solid #000;
+  border-radius: 12% / 5.6%;
+  background: #000;
+}
+.spotlight__island {
+  position: absolute;
+  top: 4.4%;
+  left: 50%;
+  width: 30%;
+  height: 2.5%;
+  border-radius: 999px;
+  background: #000;
+  transform: translateX(-50%);
+}
+.spotlight__phone--0 {
+  right: 0;
+  bottom: 0;
+  rotate: 5deg;
+}
+.spotlight__phone--1 {
+  right: 15%;
+  bottom: -2%;
+  z-index: 2;
+  width: clamp(84px, 16%, 124px);
+  rotate: -4deg;
+  filter: brightness(0.86);
+  animation-delay: -3.5s;
+}
+@keyframes spotlight-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -12px;
+  }
+}
+.spotlight__live {
+  position: absolute;
+  left: 4%;
+  bottom: clamp(1.6rem, 7.5%, 4.4rem);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-2);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  font-family: var(--f-mono);
+  font-size: 0.74rem;
+  color: var(--text);
+  box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7);
+}
+
+.spotlight__info {
+  display: grid;
+  gap: 1.35rem;
+}
+.spotlight__kind {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  font-family: var(--f-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+.spotlight__kind svg {
+  color: #95bf47;
+}
+.spotlight__new {
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--grad);
+  color: var(--on-accent);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+.spotlight__summary {
+  font-size: clamp(1.02rem, 0.98rem + 0.25vw, 1.15rem);
+  line-height: 1.75;
+  color: var(--text-2);
+}
+.spotlight__numbers {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--border);
+}
+.spotlight__numbers div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  padding: 1rem 1.1rem;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.spotlight__numbers dd {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  line-height: 1;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.spotlight__numbers dt {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--text-3);
+}
+.spotlight__built {
+  display: grid;
+}
+.spotlight__built li {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.4rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.spotlight__built li span {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  line-height: 2.2;
+  color: var(--c2);
+}
+.spotlight__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.4rem;
+}
+.spotlight__role {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+}
+
+/* The store stays in view while the list beside it is read. */
+@media (min-width: 1001px) {
+  .spotlight__stage {
+    position: sticky;
+    top: 110px;
+  }
+}
+@media (max-width: 1000px) {
+  .spotlight__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .spotlight__numbers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .spotlight__stage {
+    padding: 0 2rem 3.2rem 0;
+  }
+  .spotlight__live {
+    left: 3%;
+    bottom: 1%;
+  }
+}
+
 /* ========================================================================== Education */
 
 .edu__grid {

@@ -52,6 +52,7 @@ function WorkCard({ item, index }) {
       <div className="wcard__body">
         <p className="wcard__kind">
           <span>{String(index + 1).padStart(2, "0")}</span> {item.kind} · {item.year}
+          {item.isNew && <b className="wcard__new">New</b>}
         </p>
         <h3 className="wcard__name">
           <a href={primary} target="_blank" rel="noreferrer" data-cursor={item.url ? "Visit" : "Code"}>
@@ -166,13 +167,13 @@ export default function Work() {
   }, [pages]);
 
   return (
-    <section id="work" className="work" ref={section}>
+    <section id="projects" className="work" ref={section} aria-labelledby="projects-title">
       <div className="work__head container">
         <div>
           <p className="eyebrow">
-            <span>04</span> Work
+            <span>04</span> All work
           </p>
-          <h2 className="title">
+          <h2 className="title" id="projects-title">
             Live websites and <em>projects</em>
           </h2>
         </div>

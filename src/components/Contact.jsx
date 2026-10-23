@@ -21,6 +21,7 @@ export default function Contact() {
 
   const links = [
     { icon: "linkedin", label: "LinkedIn", value: `in/${PROFILE.linkedinHandle}`, href: PROFILE.linkedin },
+    { icon: "whatsapp", label: "WhatsApp", value: PROFILE.phone, href: PROFILE.whatsapp },
     { icon: "github", label: "GitHub", value: PROFILE.githubHandle, href: PROFILE.github },
     { icon: "phone", label: "Phone", value: PROFILE.phone, href: `tel:${PROFILE.phone.replace(/\s/g, "")}` },
     { icon: "download", label: "CV", value: "PDF, one page", href: `${BASE}${PROFILE.resume}`, download: true },
@@ -41,7 +42,7 @@ export default function Contact() {
         <div className="contact__grid">
           <div className="contact__left" data-reveal>
             <p className="contact__lead">
-              Hiring for a full stack, MERN or WordPress role, or need a site built? Email is the fastest way to reach me.
+              Hiring for a full stack, MERN, Shopify or WordPress role, or need a site or store built? Email or WhatsApp is the fastest way to reach me.
             </p>
             <div className="contact__email">
               <Magnetic className="contact__mail" href={`mailto:${PROFILE.email}`} data-cursor="Mail">

@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar";
 import SceneCanvas from "./components/SceneCanvas";
 import SideRail from "./components/SideRail";
 import Skills from "./components/Skills";
+import Spotlight from "./components/Spotlight";
 import Work from "./components/Work";
 import { NAV } from "./data/site";
 import { prefersReducedMotion } from "./hooks/motion";
@@ -106,6 +107,7 @@ export default function App() {
         <About />
         <Skills />
         <Experience />
+        <Spotlight />
         <Work />
         <Education />
         <Contact />

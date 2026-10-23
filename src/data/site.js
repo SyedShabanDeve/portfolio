@@ -10,7 +10,7 @@ export const PROFILE = {
   lastName: "Ahmad",
   fullName: "Syed Shaban Ahmad",
   title: "Full Stack Developer",
-  subtitle: "MERN Stack & WordPress",
+  subtitle: "MERN Stack, Shopify & WordPress",
   location: "Lahore, Pakistan",
   email: "syedshaban785@gmail.com",
   phone: "+92 307 941 5512",
@@ -24,9 +24,10 @@ export const PROFILE = {
   photo: "syed-shaban-ahmad.webp",
   available: true,
   availability: "Open to full-time roles, remote or on-site",
+  whatsapp: "https://wa.me/923079415512",
   tagline:
-    "I build web applications with React, Node and Express on MongoDB, and WordPress sites when a CMS is the right fit.",
-  roles: ["Full Stack Developer", "MERN Stack Developer", "React Developer", "WordPress Developer"],
+    "I build web applications with React, Node and Express on MongoDB, Shopify stores that sell, and WordPress sites when a CMS is the right fit.",
+  roles: ["Full Stack Developer", "MERN Stack Developer", "Shopify Developer", "React Developer", "WordPress Developer"],
 };
 
 export const NAV = [
@@ -47,10 +48,10 @@ export const STATS = [
 
 export const ABOUT = {
   statement:
-    "I build web applications and client websites, mostly in React, Node and Express with MongoDB behind them, and in WordPress when a CMS is the right fit.",
+    "I build web applications, online stores and client websites, mostly in React, Node and Express with MongoDB behind them, on Shopify when it is a store, and in WordPress when a CMS is the right fit.",
   body: [
     "I work full time at Sani IT-Consultant in Lahore. I started there as a frontend intern in 2023 and moved into the MERN developer role in 2024. Day to day that means React front ends, REST APIs, JWT authentication with role-based access, and going back into endpoints that got slow once the data grew.",
-    "Alongside that I have been freelancing since 2022 for clients in Pakistan, the UAE and the United States. That work covers the parts that are not code as well: scoping with a client who is not technical, hosting and DNS, migrations, and being the person who answers when something breaks after handover.",
+    "Alongside that I have been freelancing since 2022 for clients in Pakistan, the UAE and the United States, most recently rebuilding a Shopify store section by section. That work covers the parts that are not code as well: scoping with a client who is not technical, hosting and DNS, migrations, and being the person who answers when something breaks after handover.",
   ],
   highlights: [
     { icon: "layers", title: "Brief to handover", text: "Scoping, build, deployment, hosting and DNS. The fixes after launch too." },
@@ -73,8 +74,8 @@ export const SKILL_GROUPS = [
   },
   {
     id: "cms",
-    label: "CMS & Platforms",
-    items: ["WordPress", "WooCommerce", "Elementor", "Plugin configuration", "Payment gateways", "Brilliant Directory"],
+    label: "E-commerce & CMS",
+    items: ["Shopify", "Liquid", "Online Store 2.0", "WordPress", "WooCommerce", "Elementor", "Plugin configuration", "Payment gateways", "Brilliant Directory"],
   },
   {
     id: "tooling",
@@ -85,9 +86,9 @@ export const SKILL_GROUPS = [
 
 /** Tags that orbit in the skills sphere. */
 export const SPHERE_SKILLS = [
-  "React", "Node.js", "Express", "MongoDB", "TypeScript", "JavaScript", "Tailwind", "WordPress",
-  "WooCommerce", "REST", "JWT", "Mongoose", "Vite", "Git", "HTML5", "CSS3", "Bootstrap", "Elementor",
-  "Postman", "Netlify", "cPanel", "Electron", "Router", "Context API", "npm", "GitHub",
+  "React", "Node.js", "Express", "MongoDB", "TypeScript", "JavaScript", "Tailwind", "Shopify",
+  "WordPress", "WooCommerce", "Liquid", "REST", "JWT", "Mongoose", "Vite", "Git", "HTML5", "CSS3",
+  "Bootstrap", "Elementor", "Postman", "Netlify", "cPanel", "Electron", "Router", "Context API", "npm", "GitHub",
 ];
 
 export const EXPERIENCE = [
@@ -128,12 +129,13 @@ export const EXPERIENCE = [
     location: "Remote",
     type: "Freelance",
     bullets: [
+      "Rebuilt the Elite Zone Shopify store section by section: custom theme sections, cash-on-delivery and WhatsApp ordering, and every release staged on a preview theme before going live.",
       "Build and deliver custom WordPress websites for clients in Pakistan, the UAE and the United States.",
       "Deliver WooCommerce stores end to end: catalogue setup, payment gateways, shipping rules and order handling.",
       "Set up Brilliant Directory platforms for membership and listing-based businesses.",
       "Handle hosting, DNS, deployment, migrations and post-launch fixes directly with clients.",
     ],
-    stack: ["WordPress", "WooCommerce", "Elementor", "cPanel"],
+    stack: ["Shopify", "Liquid", "WordPress", "WooCommerce", "Elementor", "cPanel"],
   },
 ];
 
@@ -171,6 +173,19 @@ export const LANGUAGES = [
  * Client sites list what the site is, not the backend behind it.
  */
 export const WORK = [
+  {
+    id: "elitezone",
+    name: "Elite Zone",
+    domain: "elitezone.zone",
+    url: "https://elitezone.zone",
+    kind: "Client · Shopify store",
+    year: "2026",
+    summary: "Shopify store for gadgets across Pakistan: an animated hero with live product cards, cash-on-delivery and WhatsApp ordering, and categories that build themselves.",
+    tags: ["Shopify", "Liquid", "Horizon theme"],
+    image: "shots/elitezone.webp",
+    tall: true,
+    isNew: true,
+  },
   {
     id: "times",
     name: "The Times of New York",
@@ -289,6 +304,37 @@ export const WORK = [
     image: "shots/portfolio.webp",
   },
 ];
+
+/**
+ * The newest build, given its own case study above the gallery. Everything
+ * here is what shipped on the live store.
+ */
+export const SPOTLIGHT = {
+  name: "Elite Zone",
+  domain: "elitezone.zone",
+  url: "https://elitezone.zone",
+  kind: "Client · Shopify store",
+  year: "2026",
+  summary:
+    "A gadget and accessories store selling across Pakistan, cash on delivery first. I rebuilt it section by section on Shopify's Horizon theme around how its customers buy: trust signals up front, WhatsApp as a second way to order, and a catalogue the owner can grow without touching code.",
+  image: "shots/elitezone.webp",
+  phones: ["shots/elitezone-m.webp", "shots/elitezone-product-m.webp"],
+  role: "Theme engineering, store setup and SEO",
+  numbers: [
+    { value: "15", label: "Release rounds, each staged on a preview theme first" },
+    { value: "10", label: "Viewports checked per release, 320px to 1920px" },
+    { value: "COD", label: "Cash on delivery and WhatsApp ordering on every product" },
+  ],
+  built: [
+    "A custom animated hero: rotating category words and floating product cards with live prices and discount badges.",
+    "Product pages built for cash on delivery: a savings badge, delivery and returns promises, and Order on WhatsApp beside Add to cart.",
+    "Category circles, the header menu, the mobile drawer and the footer fill themselves from live collections, so a new category needs no theme edit.",
+    "Category chips with product counts and an inline search on every collection page, plus quick add on mobile.",
+    "SEO groundwork: share image, WebSite and BreadcrumbList structured data, and a homepage title built from the live categories.",
+    "Releases scripted end to end: Node scripts generate the theme files and push them to a preview theme through the Admin GraphQL API.",
+  ],
+  stack: ["Shopify", "Liquid", "Horizon theme", "JavaScript", "CSS", "Admin GraphQL API"],
+};
 
 export const THEMES = [
   { id: "nebula", label: "Nebula", swatch: ["#7c5cff", "#22d3ee"] },

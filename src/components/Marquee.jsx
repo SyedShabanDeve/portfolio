@@ -5,7 +5,7 @@ import { prefersReducedMotion } from "../hooks/motion";
 
 const ROWS = [
   ["React", "Node.js", "Express", "MongoDB", "TypeScript", "Tailwind"],
-  ["WordPress", "WooCommerce", "REST APIs", "JWT Auth", "Vite", "Git"],
+  ["Shopify", "WordPress", "WooCommerce", "REST APIs", "JWT Auth", "Vite", "Git"],
 ];
 
 /** Two counter-running bands whose speed and skew follow the scroll. */
