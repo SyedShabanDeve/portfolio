@@ -171,7 +171,7 @@ export default function Work() {
       <div className="work__head container">
         <div>
           <p className="eyebrow">
-            <span>04</span> All work
+            <span>05</span> All work
           </p>
           <h2 className="title" id="projects-title">
             Live websites and <em>projects</em>

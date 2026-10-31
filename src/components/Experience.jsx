@@ -26,7 +26,7 @@ export default function Experience() {
     <section id="experience" className="section experience" ref={root}>
       <div className="container">
         <p className="eyebrow" data-reveal>
-          <span>03</span> Experience
+          <span>04</span> Experience
         </p>
         <h2 className="title" data-reveal>
           Where the work <em>happens</em>

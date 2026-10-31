@@ -33,8 +33,10 @@ export const PROFILE = {
 export const NAV = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
+  { id: "ai", label: "AI" },
   { id: "experience", label: "Experience" },
   { id: "work", label: "Work" },
+  { id: "problems", label: "Problems" },
   { id: "education", label: "Education" },
   { id: "contact", label: "Contact" },
 ];
@@ -65,7 +67,7 @@ export const SKILL_GROUPS = [
   {
     id: "frontend",
     label: "Frontend",
-    items: ["React 19", "JavaScript ES6+", "TypeScript", "React Router", "Context API", "Tailwind CSS", "Bootstrap 5", "HTML5", "CSS3", "Framer Motion"],
+    items: ["React 19", "Next.js", "JavaScript ES6+", "TypeScript", "React Router", "Context API", "Tailwind CSS", "Bootstrap 5", "HTML5", "CSS3", "Framer Motion"],
   },
   {
     id: "backend",
@@ -80,7 +82,12 @@ export const SKILL_GROUPS = [
   {
     id: "tooling",
     label: "Tooling & Deploy",
-    items: ["Git & GitHub", "Vite", "npm", "Postman", "ESLint", "GitHub Actions", "Netlify", "cPanel", "Electron"],
+    items: ["Git & GitHub", "Vite", "npm", "Postman", "ESLint", "Playwright", "GitHub Actions", "Vercel", "Netlify", "cPanel", "Electron"],
+  },
+  {
+    id: "ai",
+    label: "AI & Prompt Engineering",
+    items: ["Prompt engineering", "Claude & Claude Code", "ChatGPT", "Gemini", "GitHub Copilot", "Cursor", "LLM tool calling", "Multi-agent systems", "Prompt injection defence", "Ollama"],
   },
 ];
 
@@ -89,11 +96,12 @@ export const SPHERE_SKILLS = [
   "React", "Node.js", "Express", "MongoDB", "TypeScript", "JavaScript", "Tailwind", "Shopify",
   "WordPress", "WooCommerce", "Liquid", "REST", "JWT", "Mongoose", "Vite", "Git", "HTML5", "CSS3",
   "Bootstrap", "Elementor", "Postman", "Netlify", "cPanel", "Electron", "Router", "Context API", "npm", "GitHub",
+  "Next.js", "Prompts", "Claude", "Playwright",
 ];
 
 export const EXPERIENCE = [
   {
-    period: "Jan 2024 – Present",
+    period: "Jan 2024 - Present",
     current: true,
     role: "MERN Stack Developer",
     company: "Sani IT-Consultant",
@@ -109,7 +117,7 @@ export const EXPERIENCE = [
     stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
   },
   {
-    period: "Jun 2023 – Dec 2023",
+    period: "Jun 2023 - Dec 2023",
     role: "Web Development Intern",
     company: "Sani IT-Consultant",
     location: "Lahore",
@@ -122,7 +130,7 @@ export const EXPERIENCE = [
     stack: ["HTML5", "CSS3", "JavaScript", "React", "WordPress"],
   },
   {
-    period: "Jan 2022 – Present",
+    period: "Jan 2022 - Present",
     current: true,
     role: "Freelance Web Developer",
     company: "Self-employed",
@@ -143,14 +151,14 @@ export const EDUCATION = [
   {
     degree: "BS Computer Science",
     school: "Riphah International University, Lahore",
-    period: "2026 – 2028",
+    period: "2026 - 2028",
     detail: "In progress, alongside full-time work",
     grade: "CGPA 3.4 / 4.0",
   },
   {
     degree: "Associate Degree in Information Technology",
     school: "Riphah International University, Lahore",
-    period: "2023 – 2025",
+    period: "2023 - 2025",
     detail: "Completed",
     grade: "CGPA 3.66 / 4.0",
   },
@@ -234,6 +242,30 @@ export const WORK = [
     image: "shots/styleandcarry.webp",
   },
   {
+    id: "toolsfluent",
+    name: "Toolsfluent",
+    domain: "toolsfluent.com",
+    url: "https://www.toolsfluent.com",
+    kind: "Own product · Calculators",
+    year: "2026",
+    summary: "Over 100 free tools built for Pakistan: solar payback, income tax, bijli bill, MDCAT aggregate, Marla to Kanal and more, all on local rules and PKR values, running in the browser.",
+    tags: ["Next.js", "React", "Vercel", "SEO"],
+    image: "shots/toolsfluent.webp",
+    tall: true,
+  },
+  {
+    id: "socialvids",
+    name: "SocialVids",
+    domain: "socialvids.net",
+    url: "https://www.socialvids.net",
+    kind: "Own product · Web tool",
+    year: "2026",
+    summary: "Video and image downloader for TikTok, Instagram, Pinterest, X, Facebook and Reddit: paste a link and save the file, with no account and no watermark.",
+    tags: ["Next.js", "React", "Vercel"],
+    image: "shots/socialvids.webp",
+    tall: true,
+  },
+  {
     id: "nexora",
     name: "Nexora",
     domain: "syedshabandeve.github.io/nexora",
@@ -302,6 +334,84 @@ export const WORK = [
     summary: "A tesseract rotating through four dimensions and projected into 3D every frame, with GSAP scroll choreography and four themes.",
     tags: ["React 19", "three.js", "GSAP"],
     image: "shots/portfolio.webp",
+  },
+];
+
+/** How AI fits into my work: what it does, and what I still do myself. */
+export const AI_USE = {
+  intro:
+    "I use AI the way I use any other tool on a project: for the parts it is good at, and never as a replacement for reading the code. Claude and Claude Code, ChatGPT, Gemini, GitHub Copilot and Cursor are all part of a normal week.",
+  items: [
+    {
+      icon: "layers",
+      title: "Scoping a brief",
+      text: "Before a build I talk the brief through with Claude or ChatGPT to find the questions I have not asked the client yet. The plan itself I write and own.",
+    },
+    {
+      icon: "code",
+      title: "Writing code with an assistant",
+      text: "Copilot and Cursor take the boilerplate. Claude Code handles larger refactors and scripted jobs, like the Node scripts that pushed every Elite Zone release to a preview theme. I read every diff before it ships.",
+    },
+    {
+      icon: "gauge",
+      title: "Testing in a real browser",
+      text: "I pair Claude Code with Playwright to load pages at phone, tablet and desktop widths and catch layout breaks before a client does. Elite Zone was checked on ten viewports per release this way.",
+    },
+    {
+      icon: "terminal",
+      title: "Prompt engineering",
+      text: "For Nexora I wrote the system prompts for four agents, each with its own role, tools and limits, and taught them to treat file contents as data, not as instructions.",
+    },
+    {
+      icon: "server",
+      title: "Building on LLM APIs",
+      text: "Nexora talks to Claude, Gemini and local Ollama models through one interface, with tool calling, streamed replies and a history format each backend can read.",
+    },
+    {
+      icon: "shield",
+      title: "Where I draw the line",
+      text: "Client passwords and private data never go into a model, and nothing goes live because a model said it works. If I cannot explain a piece of code, it does not ship.",
+    },
+  ],
+};
+
+/** Real problems from real projects: what broke, what I did, what changed. */
+export const CHALLENGES = [
+  {
+    project: "Elite Zone · Shopify",
+    problem: "Shopify would only render the two original sections of the collection template, whatever the JSON said, so a new category bar never showed up.",
+    fix: "I added the bar to a section that already rendered in the footer group and moved it into place with a small inline script.",
+    result: "Category chips and search on every collection page, without forking the theme.",
+  },
+  {
+    project: "Elite Zone · Shopify",
+    problem: "Category names were hard coded in five places: the hero, the menu, the mobile drawer, the footer and the homepage title.",
+    fix: "I rebuilt all five to read from the store's live collections.",
+    result: "The owner adds a collection and it appears everywhere, with no theme edit.",
+  },
+  {
+    project: "Elite Zone · Shopify",
+    problem: "Scroll progress and reveal effects worked on phones but not on desktop, because the theme scrolls a wrapper element there instead of the window.",
+    fix: "One shared helper that finds whichever element is actually scrolling.",
+    result: "A single code path for every screen size.",
+  },
+  {
+    project: "Nexora · AI desktop app",
+    problem: "An agent that can read and write files can be talked into deleting things by a poisoned document. That is prompt injection.",
+    fix: "Every change to the machine waits for approval showing the exact path or command, credential stores are always refused, and the prompts tell agents that file contents are data.",
+    result: "Broad file access that stays safe to use.",
+  },
+  {
+    project: "Catchy Storefront · React",
+    problem: "Adding a medium and a large of the same shirt overwrote each other in the cart.",
+    fix: "Cart lines are keyed by product, size and colour together, and the cart is saved on every change.",
+    result: "Variants never collide, and a refresh keeps the cart.",
+  },
+  {
+    project: "Sani Corporate · React",
+    problem: "Visitors downloaded all seven pages of the site just to see the homepage.",
+    fix: "Every inner page moved behind React.lazy into its own chunk.",
+    result: "Only the homepage ships in the first load.",
   },
 ];
 

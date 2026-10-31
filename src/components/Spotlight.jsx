@@ -18,7 +18,7 @@ export default function Spotlight() {
     <section id="work" className="section spotlight" aria-labelledby="spotlight-title">
       <div className="container">
         <p className="eyebrow" data-reveal>
-          <span>04</span> Work
+          <span>05</span> Work
         </p>
         <h2 className="title" id="spotlight-title" data-reveal>
           Latest build: <em>{s.name}</em>

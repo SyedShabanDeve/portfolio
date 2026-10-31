@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import About from "./components/About";
+import AIWorkflow from "./components/AIWorkflow";
+import Challenges from "./components/Challenges";
 import Contact from "./components/Contact";
 import Cursor from "./components/Cursor";
 import Education from "./components/Education";
@@ -106,9 +108,11 @@ export default function App() {
         <Marquee />
         <About />
         <Skills />
+        <AIWorkflow />
         <Experience />
         <Spotlight />
         <Work />
+        <Challenges />
         <Education />
         <Contact />
       </main>
