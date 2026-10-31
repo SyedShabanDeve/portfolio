@@ -234,7 +234,7 @@ export const WORK = [
     name: "Style & Carry",
     domain: "styleandcarry.netlify.app",
     url: "https://styleandcarry.netlify.app/",
-    repo: "https://github.com/SyedShabanDeve/foldandcarry",
+    repo: "https://github.com/SyedShabanDeve/style-and-carry",
     kind: "E-commerce store",
     year: "2026",
     summary: "Online store for wallets, watches and bags in Pakistan: category browsing, search, order tracking, wishlist and cart, with cash on delivery.",
