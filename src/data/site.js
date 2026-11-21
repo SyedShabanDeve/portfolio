@@ -53,7 +53,7 @@ export const ABOUT = {
     "I build web applications, online stores and client websites, mostly in React, Node and Express with MongoDB behind them, on Shopify when it is a store, and in WordPress when a CMS is the right fit.",
   body: [
     "I work full time at Sani IT-Consultant in Lahore. I started there as a frontend intern in 2023 and moved into the MERN developer role in 2024. Day to day that means React front ends, REST APIs, JWT authentication with role-based access, and going back into endpoints that got slow once the data grew.",
-    "Alongside that I have been freelancing since 2022 for clients in Pakistan, the UAE and the United States, most recently rebuilding a Shopify store section by section. That work covers the parts that are not code as well: scoping with a client who is not technical, hosting and DNS, migrations, and being the person who answers when something breaks after handover.",
+    "Alongside that I have been freelancing since 2022 for clients in Pakistan, the UAE and the United States, most recently rebuilding a Shopify store section by section. That work covers the parts that are not code as well: scoping with a client who is not technical, hosting and DNS, migrations, and being the person who answers when something breaks after handover. I also set up the search side: Google Search Console, sitemaps, indexing, meta titles and descriptions, and structured data.",
   ],
   highlights: [
     { icon: "layers", title: "Brief to handover", text: "Scoping, build, deployment, hosting and DNS. The fixes after launch too." },
@@ -88,6 +88,11 @@ export const SKILL_GROUPS = [
     id: "ai",
     label: "AI & Prompt Engineering",
     items: ["Prompt engineering", "Claude & Claude Code", "ChatGPT", "Gemini", "GitHub Copilot", "Cursor", "LLM tool calling", "Multi-agent systems", "Prompt injection defence", "Ollama"],
+  },
+  {
+    id: "seo",
+    label: "SEO & Search",
+    items: ["Google Search Console", "XML sitemaps", "Indexing and crawl fixes", "Meta titles and descriptions", "Focus keywords", "Structured data (JSON-LD)", "Cloudflare Workers"],
   },
 ];
 
